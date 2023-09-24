@@ -1,99 +1,104 @@
 body {
-    background-color: #333232;
+  background-color: #202020;
 }
 
 #title {
-    font-size: 40px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-family: 'Ubuntu', sans-serif;
-    color: #FFFFFF;
+  font-size: 40px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: "Ubuntu", sans-serif;
+  color: #ffffff;
 }
 
 .buttons {
-    font-size: 30px;
-    text-align: center;
-    width: 80%;
-    display: block;
-    margin: 0 auto 4%;
-    font-family: 'Ubuntu', sans-serif;
+  font-size: 30px;
+  text-align: center;
+  width: 80%;
+  display: block;
+  margin: 0 auto 4%;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .buttons:hover {
-    background-color: #9503ff;
-    color: #FFFFFF;
-    opacity: 50%;
+  background-color: #9503ff;
+  color: #ffffff;
+  opacity: 50%;
 }
 
-#loginName, #loginPassword {
-    font-size: 30px;
-    display: block;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    border: 2px solid #9503ff; /* Added border style */
-    background-color: #333232; /* Added background color */
-    color: #FFFFFF; /* Added text color */
-    padding: 10px; /* Added padding for space inside the input field */
-    width: 80%;
-    margin: 0 auto 2%; /* Center align and add margin */
-    text-align: left; /* Set text alignment to left */
+#loginName,
+#loginPassword {
+  font-size: 30px;
+  display: block;
+  margin-bottom: 1%;
+  font-family: "Ubuntu", sans-serif;
+  border: 2px solid #9503ff; /* Added border style */
+  background-color: #333232; /* Added background color */
+  color: #ffffff; /* Added text color */
+  padding: 10px; /* Added padding for space inside the input field */
+  width: 80%;
+  margin: 0 auto 2%; /* Center align and add margin */
+  text-align: left; /* Set text alignment to left */
+  border-radius: 25px;
 }
 
-#loginName:focus, #loginPassword:focus {
-    outline: none; /* Remove default focus outline */
-    border-color: #9503ff; /* Change border color on focus */
-    margin-bottom: 1%;
+#loginName:focus,
+#loginPassword:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #9503ff; /* Change border color on focus */
+  margin-bottom: 1%;
 }
 
-#loginName::placeholder, #loginPassword::placeholder {
-    color: #FFFFFF;
-    margin-bottom: 1%;
+#loginName::placeholder,
+#loginPassword::placeholder {
+  color: #ffffff;
+  margin-bottom: 1%;
 }
 
 #loginButton {
-    font-size: 30px;
-    border-radius: 25px;
-    width: 80%;
-    margin: 0 auto 2%; /* Added margin-bottom value */
-    font-family: 'Ubuntu', sans-serif;
-    color: #FFFFFF;
-    background-color: #9503ff;
-    border: none;
-    padding: 10px 20px;
-    text-align: center; /* Center align text on the button */
+  font-size: 30px;
+  border-radius: 25px;
+  width: 80%;
+  margin: 0 auto 2%; /* Added margin-bottom value */
+  font-family: "Ubuntu", sans-serif;
+  color: #ffffff;
+  background-color: #9503ff;
+  border: none;
+  padding: 10px 20px;
+  text-align: center; /* Center align text on the button */
 }
 
 #loginDiv {
-    font-size: 20px;
-    width: 80%;
-    margin: 15% auto 0 50%; /* Adjusted margin values */
-    transform: translateX(-50%);
-    font-family: 'Ubuntu', sans-serif;
-    text-align: center; /* Center align text */
+  font-size: 20px;
+  width: 80%;
+  margin: 15% auto 0 50%; /* Adjusted margin values */
+  transform: translateX(-50%);
+  font-family: "Ubuntu", sans-serif;
+  text-align: center; /* Center align text */
 }
 
 #loginDiv label {
-    margin-bottom: 1.5%; /* Adjusted margin-bottom value */
-    display: block; /* Make label a block element */
-    color: #d49dff;
-    text-align: left; /* Set text alignment to left */
-    margin-left: 6em; /* Increased margin-left for more spacing */
-    border-radius: 50px; /* Added border-radius for rounded corners */
+  margin-bottom: 1.5%; /* Adjusted margin-bottom value */
+  display: block; /* Make label a block element */
+  color: #d49dff;
+  text-align: left; /* Set text alignment to left */
+  margin-left: 6em; /* Increased margin-left for more spacing */
+  border-radius: 50px; /* Added border-radius for rounded corners */
 }
 
-#loginDiv label[for="loginName"], #loginDiv label[for="loginPassword"] {
-    margin-bottom: 1.5%; /* Adjusted margin-bottom value */
+#loginDiv label[for="loginName"],
+#loginDiv label[for="loginPassword"] {
+  margin-bottom: 1.5%; /* Adjusted margin-bottom value */
 }
 
 #inner-title {
-    margin-bottom: 2%; /* Adjusted margin value */
-    color: #FFFFFF;
+  margin-bottom: 2%; /* Adjusted margin value */
+  color: #ffffff;
 }
 select {
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
+  width: 30%;
+  margin-left: 35%;
+  margin-top: 2%;
+  font-size: 0.75em;
+  font-family: "Ubuntu", sans-serif;
 }
