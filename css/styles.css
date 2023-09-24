@@ -14,6 +14,18 @@ body {
   color: #ffffff;
 }
 
+#contactTable {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  border: white 1px solid;
+  color: white;
+  margin: 4%;
+  padding: 10px;
+  text-align: center;
+  justify-content: space-around;
+  border-radius: 25px;
+}
+
 #headerBar {
   margin-top: 10px;
   margin: 10px 20px;
