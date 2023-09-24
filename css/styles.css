@@ -32,7 +32,9 @@ body {
 }
 
 #loginName,
-#loginPassword {
+#loginPassword,
+#firstName,
+#lastName {
   font-size: 30px;
   display: block;
   margin-bottom: 1%;
