@@ -11,6 +11,34 @@ body {
   color: #ffffff;
 }
 
+#headerBar {
+  display: flex;
+  color: white;
+  padding: 10px;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+}
+
+.navBar > a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.navBar > a:hover {
+  color: darkgrey;
+}
+
+.navBar {
+  background-color: #00000025;
+  display: flex;
+  padding: 5px;
+  color: white;
+  border-radius: 40px;
+}
+
 .buttons {
   font-size: 30px;
   text-align: center;
