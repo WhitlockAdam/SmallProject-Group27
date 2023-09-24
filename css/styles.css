@@ -35,6 +35,9 @@ body {
     background-color: #333232; /* Added background color */
     color: #FFFFFF; /* Added text color */
     padding: 10px; /* Added padding for space inside the input field */
+    width: 80%;
+    margin: 0 auto 2%; /* Center align and add margin */
+    text-align: left; /* Set text alignment to left */
 }
 
 #loginName:focus, #loginPassword:focus {
@@ -58,68 +61,39 @@ body {
     background-color: #9503ff;
     border: none;
     padding: 10px 20px;
+    text-align: center; /* Center align text on the button */
 }
 
 #loginDiv {
     font-size: 20px;
     width: 80%;
-    margin: 15% auto 15% 50%;
+    margin: 15% auto 0 50%; /* Adjusted margin values */
     transform: translateX(-50%);
     font-family: 'Ubuntu', sans-serif;
+    text-align: center; /* Center align text */
 }
 
 #loginDiv label {
-    margin-left: 10%; /* Adjusted margin-left value */
+    margin-bottom: 1.5%; /* Adjusted margin-bottom value */
+    display: block; /* Make label a block element */
     color: #d49dff;
+    text-align: left; /* Set text alignment to left */
+    margin-left: 6em; /* Increased margin-left for more spacing */
+    border-radius: 50px; /* Added border-radius for rounded corners */
 }
 
 #loginDiv label[for="loginName"], #loginDiv label[for="loginPassword"] {
     margin-bottom: 1.5%; /* Adjusted margin-bottom value */
 }
 
-#searchText, #colorText {
-    font-size: 30px;
-}
-
-input[type="text"], input[type="password"] {
-    border-radius: 25px;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-}
-
 #inner-title {
-    margin-left: 10%;
+    margin-bottom: 2%; /* Adjusted margin value */
     color: #FFFFFF;
 }
-
-#logoutButton {
-    width: 20%;
-    margin-left: 40%;
-}
-
 select {
     width: 30%;
     margin-left: 35%;
     margin-top: 2%;
     font-size: 0.75em;
     font-family: 'Ubuntu', sans-serif;
-}
-
-#colorSearchResult {
-    display: none;
-}
-
-#colorAddResult {
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #9503ff;
 }
