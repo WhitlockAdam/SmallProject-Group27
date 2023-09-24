@@ -9,6 +9,7 @@ if [! -d ".git"]; then
         git clone $Repo_URL .
 else
         git pull origin main
+fi
 
 # If you're using Composer for PHP dependencies, uncomment the following line
 # composer install
