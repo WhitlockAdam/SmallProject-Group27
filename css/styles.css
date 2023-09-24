@@ -26,13 +26,18 @@ body {
   opacity: 50%;
 }
 
+#loginLink {
+  text-align: left;
+  border: 1px solid black;
+}
+
 #loginName,
 #loginPassword {
   font-size: 30px;
   display: block;
   margin-bottom: 1%;
   font-family: "Ubuntu", sans-serif;
-  border: 2px solid #9503ff; /* Added border style */
+  border: 2px solid #5d3fd3; /* Added border style */
   background-color: #333232; /* Added background color */
   color: #ffffff; /* Added text color */
   padding: 10px; /* Added padding for space inside the input field */
@@ -45,8 +50,7 @@ body {
 #loginName:focus,
 #loginPassword:focus {
   outline: none; /* Remove default focus outline */
-  border-color: #9503ff; /* Change border color on focus */
-  margin-bottom: 1%;
+  border-color: #5d3fd3; /* Change border color on focus */
 }
 
 #loginName::placeholder,
@@ -62,7 +66,7 @@ body {
   margin: 0 auto 2%; /* Added margin-bottom value */
   font-family: "Ubuntu", sans-serif;
   color: #ffffff;
-  background-color: #9503ff;
+  background-color: #5d3fd3;
   border: none;
   padding: 10px 20px;
   text-align: center; /* Center align text on the button */
@@ -75,6 +79,7 @@ body {
   transform: translateX(-50%);
   font-family: "Ubuntu", sans-serif;
   text-align: center; /* Center align text */
+  border: #5d3fd3 1px solid;
 }
 
 #loginDiv label {
