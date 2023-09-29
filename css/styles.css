@@ -10,7 +10,6 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-family: "Ubuntu", sans-serif;
   color: #ffffff;
 }
 
@@ -180,6 +179,10 @@ tr:last-of-type td:last-of-type {
   border-radius: 25px;
 }
 
+#loginName:hover, #loginPassword:hover{
+  background-color: #696969;
+}
+
 #loginName:focus,
 #loginPassword:focus {
   outline: none; /* Remove default focus outline */
@@ -207,22 +210,22 @@ tr:last-of-type td:last-of-type {
 
 #loginDiv {
   font-size: 20px;
-  width: 80%;
+  width: 60%;
   margin: 15% auto 0 50%; /* Adjusted margin values */
   transform: translateX(-50%);
   font-family: "Ubuntu", sans-serif;
   text-align: center; /* Center align text */
-  border: #5d3fd3 1px solid;
 }
 
 #loginDiv label {
   margin-bottom: 1.5%; /* Adjusted margin-bottom value */
   display: block; /* Make label a block element */
-  color: #d49dff;
+  color: white;
   text-align: left; /* Set text alignment to left */
-  margin-left: 6em; /* Increased margin-left for more spacing */
+  margin-left: 5%; /* Increased margin-left for more spacing */
   border-radius: 50px; /* Added border-radius for rounded corners */
 }
+
 
 #loginDiv label[for="loginName"],
 #loginDiv label[for="loginPassword"] {
@@ -232,6 +235,7 @@ tr:last-of-type td:last-of-type {
 #inner-title {
   margin-bottom: 2%; /* Adjusted margin value */
   color: #ffffff;
+  
 }
 select {
   width: 30%;
