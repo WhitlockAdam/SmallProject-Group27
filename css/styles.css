@@ -208,6 +208,14 @@ tr:last-of-type td:last-of-type {
   text-align: center; /* Center align text on the button */
 }
 
+#loginLinkText{
+  color: white;
+}
+
+#loginLink{
+  color:#5d3fd3;
+}
+
 #loginDiv {
   font-size: 20px;
   width: 60%;
