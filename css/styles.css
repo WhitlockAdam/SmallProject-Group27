@@ -15,16 +15,26 @@ body {
 }
 
 #contactTableContainer {
-  border-collapse: collapse;
   width: 100%;
 }
 
 .contactTable {
+  border-collapse: collapse;
   color: white;
-  border: 1px white solid;
   padding: 1rem;
   margin: 1rem auto;
   font-size: 1.125rem;
+  border-radius: 25px;
+}
+
+tbody {
+  border: 1px solid #6e6e6e;
+  border-top: none;
+}
+
+thead {
+  background-color: #5d3fd3;
+  border-radius: 25%;
 }
 
 .contactTable th,
@@ -33,6 +43,19 @@ td {
 }
 .contactTable th {
   text-align: left;
+}
+
+th:first-of-type {
+  border-top-left-radius: 10px;
+}
+th:last-of-type {
+  border-top-right-radius: 10px;
+}
+tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: 10px;
+}
+tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: 10px;
 }
 
 @media (max-width: 650px) {
