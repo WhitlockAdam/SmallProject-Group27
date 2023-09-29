@@ -14,16 +14,68 @@ body {
   color: #ffffff;
 }
 
-#contactTable {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  border: white 1px solid;
+#contactTableContainer {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.contactTable {
   color: white;
-  margin: 4%;
-  padding: 10px;
-  text-align: center;
-  justify-content: space-around;
-  border-radius: 25px;
+  border: 1px white solid;
+  padding: 1rem;
+  margin: 1rem auto;
+  font-size: 1.125rem;
+}
+
+.contactTable th,
+td {
+  padding: 0.8rem;
+}
+.contactTable th {
+  text-align: left;
+}
+
+@media (max-width: 650px) {
+  th {
+    display: none;
+  }
+
+  td {
+    display: block;
+  }
+
+  td:first-child {
+    padding-top: 1.5rem;
+  }
+
+  td:last-child {
+    padding-bottom: 1.5rem;
+  }
+
+  td::before {
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  td:first-child::before {
+    content: "name" ": ";
+  }
+
+  td:nth-child(2)::before {
+    content: "name" ": ";
+  }
+
+  td:nth-child(3)::before {
+    content: "email" ": ";
+  }
+
+  td:nth-child(4)::before {
+    content: "phone number" ": ";
+  }
+
+  td:nth-child(5)::before {
+    content: "address" ": ";
+  }
 }
 
 #headerBar {
