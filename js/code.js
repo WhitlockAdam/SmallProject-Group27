@@ -1,4 +1,4 @@
-const urlBase = '4331cop.com/API';
+const urlBase = '4331cop.com/SmallProject-Group27/API';
 const extension = 'php';
 
 let userId = 0;
