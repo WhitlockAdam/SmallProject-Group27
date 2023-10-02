@@ -26,22 +26,38 @@
         >
         <a href="">About</a>
       </div>
-      <h3>Welcome <span id="firstName"></span>!</h3>
-        <script>
-            // Assuming you have received the JSON response from your PHP script and stored it in response
-            var response = '{"message":"User registered successfully.","firstName":"John","error":""}';
-            
-            // Parse the JSON response
-            var data = JSON.parse(response);
-            
-            // Check if there are any errors
-            if (data.error !== "") {
-                alert('Error: ' + data.error);
-            } else {
-                // Display the user's first name
-                document.getElementById('firstName').textContent = data.firstName;
-            }
-        </script>
+      <h3 id="welcomeMessage"></h3>
+
+      <script>
+          // Function to make a GET request to your login.php script
+          function getUserInfo() {
+              var xhr = new XMLHttpRequest();
+              xhr.open("GET", "login.php", true);
+              xhr.onreadystatechange = function () {
+                  if (xhr.readyState === XMLHttpRequest.DONE) {
+                      if (xhr.status === 200) {
+                          var data = JSON.parse(xhr.responseText);
+                          if (data.error === "") {
+                              displayWelcomeMessage(data.firstName);
+                          } else {
+                              alert("Error: " + data.error);
+                          }
+                      } else {
+                          alert("Error fetching user information");
+                      }
+                  }
+              };
+              xhr.send();
+          }
+      
+          // Function to display the welcome message with the user's first name
+          function displayWelcomeMessage(firstName) {
+              document.getElementById('welcomeMessage').textContent = "Welcome " + firstName + "!";
+          }
+      
+          // Call the function to get user info
+          getUserInfo();
+      </script>
     </div>
 
     <div id="contactTableContainer">
