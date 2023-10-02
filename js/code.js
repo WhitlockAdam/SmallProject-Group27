@@ -1,5 +1,5 @@
 const urlBase = 'http://4331cop.com/API;
-const extension = 'html';
+const extension = 'php';
 
 let userId = 0;
 let firstName = "";
