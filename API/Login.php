@@ -11,7 +11,7 @@ $firstName = "";
 $lastName = "";
 returnWithError("got here");
 // Create a new SQL database connection
-$conn = new createDBConnection("localhost", "k", "WeLoveCOP4331", "contactmanager");
+$conn = createDBConnection("localhost", "k", "WeLoveCOP4331", "contactmanager");
 
 
 // Check if the connection was successful, else return an error
@@ -50,7 +50,7 @@ function createDBConnection($db_host, $db_user, $db_password, $db_name) {
 
     // Check the connection
     if ($conn->connect_error) {
-        die("Connection with database failed: " . $mysqli->connect_error);
+        die("Connection with database failed: " . $conn->connect_error);
     }
 
     return $conn;
