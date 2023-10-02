@@ -11,7 +11,7 @@ function doRegister() {
     let firstName = document.getElementById("firstName").value;
     let lastName = document.getElementById("lastName").value;
 
-    document.getElementById("registerResult").innerHTML = "";
+    document.getElementById("loginResult").innerHTML = "";
 
     let tmp = {email: email, password: password, firstName: firstName, lastName: lastName};
     let jsonPayload = JSON.stringify(tmp);
@@ -28,7 +28,7 @@ function doRegister() {
                 userId = jsonObject.id;
 
                 if (userId < 1) {
-                    document.getElementById("registerResult").innerHTML = "Registration failed. Please try again.";
+                    document.getElementById("loginResult").innerHTML = "Registration failed. Please try again.";
                     return;
                 }
 
@@ -42,7 +42,7 @@ function doRegister() {
         };
         xhr.send(jsonPayload);
     } catch(err) {
-        document.getElementById("registerResult").innerHTML = err.message;
+        document.getElementById("loginResult").innerHTML = err.message;
     }
 }
 
