@@ -16,7 +16,7 @@ function doRegister() {
     let tmp = {email: email, password: password, firstName: firstName, lastName: lastName};
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/Register.' + extension;
+    let url = urlBase + '/register.' + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -61,7 +61,7 @@ function doLogin() {
     // var tmp = {login:login,password:hash};
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/Login.' + extension;
+    let url = urlBase + '/index.' + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
