@@ -6,10 +6,10 @@ let firstName = "";
 let lastName = "";
 
 function doRegister() {
-    let email = document.getElementById("registerEmail").value;
-    let password = document.getElementById("registerPassword").value;
-    let firstName = document.getElementById("registerFirstName").value;
-    let lastName = document.getElementById("registerLastName").value;
+    let email = document.getElementById("loginName").value;
+    let password = document.getElementById("loginPassword").value;
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
 
     document.getElementById("registerResult").innerHTML = "";
 
@@ -37,7 +37,7 @@ function doRegister() {
 
                 saveCookie();
 
-                window.location.href = "color.html";
+                window.location.href = "login.html";
             }
         };
         xhr.send(jsonPayload);
@@ -51,8 +51,8 @@ function doLogin() {
     firstName = "";
     lastName = "";
     
-    let email = document.getElementById("email").value; // Assuming you have an input field with id="loginEmail"
-    let password = document.getElementById("password").value; // Assuming you have an input field with id="loginPassword"
+    let email = document.getElementById("loginName").value; 
+    let password = document.getElementById("loginPassword").value; 
     // var hash = md5( password );
 
     document.getElementById("loginResult").innerHTML = "";
