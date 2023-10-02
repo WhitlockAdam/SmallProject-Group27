@@ -10,7 +10,7 @@ $inData = getRequestInfo();
 $id = 0;
 $firstName = "";
 $lastName = "";
-returnWithError("got here");
+// returnWithError("got here");
 // Create a new SQL database connection
 $conn = createDBConnection("localhost", "golden", "password", "contactmanager");
 
