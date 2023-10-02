@@ -22,7 +22,7 @@ if($conn->connect_error) {
         
         // Check if the insertion was successful
         if($stmt->affected_rows > 0) {
-            returnWithInfo("User registered successfully.");
+            returnWithInfo("User registered successfully.", $inData["firstName"]);
         } else {
             returnWithError("Registration failed. Please check your input.");
         }
@@ -64,9 +64,9 @@ function returnWithError($err) {
     sendResultInfoAsJson($retValue);
 }
 
-// Function to return a success message
-function returnWithInfo($msg) {
-    $retValue = '{"message":"' . $msg . '","error":""}';
+// Function to return a success message with user's first name
+function returnWithInfo($msg, $firstName) {
+    $retValue = '{"message":"' . $msg . '","firstName":"' . $firstName . '","error":""}';
     sendResultInfoAsJson($retValue);
 }
 ?>
