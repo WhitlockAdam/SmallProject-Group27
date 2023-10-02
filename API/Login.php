@@ -19,7 +19,7 @@ if($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     // Prepare SQL statement to select user details from the database
-    $stmt = $conn->prepare("SELECT id, firstname, lastname FROM users WHERE email=? AND password=?");
+    $stmt = $conn->prepare("SELECT id, firstname, lastname FROM users WHERE email='AllisonDT' AND password='AllisonDT'");
     
     if($stmt) {
         // Bind the input parameters to the SQL statement
