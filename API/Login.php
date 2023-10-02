@@ -11,7 +11,7 @@ $firstName = "";
 $lastName = "";
 returnWithError("got here");
 // Create a new SQL database connection
-$conn = createDBConnection("localhost", "k", "WeLoveCOP4331", "contactmanager");
+$conn = createDBConnection("localhost", "test@email.com", "testPassword", "contactmanager");
 
 
 // Check if the connection was successful, else return an error
