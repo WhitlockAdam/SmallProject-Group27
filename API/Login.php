@@ -19,11 +19,11 @@ if($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     // Prepare SQL statement to select user details from the database
-    $stmt = $conn->prepare("SELECT ID, firstname, lastname FROM users WHERE email=? AND password=?");
+    $stmt = $conn->prepare("SELECT id, firstname, lastname FROM users WHERE email=? AND password=?");
     
     if($stmt) {
         // Bind the input parameters to the SQL statement
-        $stmt->bind_param("ss", $inData["login"], $inData["password"]);
+        $stmt->bind_param("ss", $inData["email"], $inData["password"]);
         $stmt->execute();
         
         // Execute the statement and get the result
@@ -31,7 +31,7 @@ if($conn->connect_error) {
         
         // Check if any records were found, if so return the user details, else return an error
         if($row = $result->fetch_assoc()) {
-            returnWithInfo($row['firstName'], $row['lastName'], $row['ID']);
+            returnWithInfo($row['firstname'], $row['lastname'], $row['id']);
         } else {
             returnWithError("No Records Found");
         }
