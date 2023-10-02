@@ -156,7 +156,16 @@ function addContact() {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
                 alert(response.success);
-                // Code to handle successful addition of contact
+
+                // Call a function to update the contact table with the new contact
+                updateContactTable(response.contact);
+
+                // Clear the input fields or hide the contact form/modal
+                document.getElementById("newFirstName").value = "";
+                document.getElementById("newLastName").value = "";
+                document.getElementById("newEmail").value = "";
+                document.getElementById("newPhoneNumber").value = "";
+                document.getElementById("newAddress").value = "";
             } else {
                 alert(response.error);
             }
@@ -164,6 +173,56 @@ function addContact() {
     };
 
     xhr.send(JSON.stringify(jsonPayload));
+}
+
+// Function to update the contact table with a new contact
+function updateContactTable(contact) {
+    let tableBody = document.getElementById("contactTableBody");
+
+    // Create a new row for the contact
+    let newRow = document.createElement("tr");
+    
+    // Create cells for each column in the row
+    let firstNameCell = document.createElement("td");
+    firstNameCell.textContent = contact.firstName;
+    let lastNameCell = document.createElement("td");
+    lastNameCell.textContent = contact.lastName;
+    let emailCell = document.createElement("td");
+    emailCell.textContent = contact.email;
+    let phoneNumberCell = document.createElement("td");
+    phoneNumberCell.textContent = contact.phoneNumber;
+    let addressCell = document.createElement("td");
+    addressCell.textContent = contact.address;
+    let actionsCell = document.createElement("td");
+
+    // Add edit and delete buttons to the actions cell
+    let editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+    editButton.onclick = function() {
+        // Call the editContact() function here with the contact ID
+        // You'll need to implement this function to handle editing
+    };
+
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.onclick = function() {
+        // Call the deleteContact() function here with the contact ID
+        // You'll need to implement this function to handle deletion
+    };
+
+    actionsCell.appendChild(editButton);
+    actionsCell.appendChild(deleteButton);
+
+    // Append cells to the row
+    newRow.appendChild(firstNameCell);
+    newRow.appendChild(lastNameCell);
+    newRow.appendChild(emailCell);
+    newRow.appendChild(phoneNumberCell);
+    newRow.appendChild(addressCell);
+    newRow.appendChild(actionsCell);
+
+    // Append the new row to the contact table
+    tableBody.appendChild(newRow);
 }
 
 function searchContacts() {
