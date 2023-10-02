@@ -26,7 +26,7 @@
         >
         <a href="">About</a>
       </div>
-      <h3>Welcome, ' . $data['firstName'] . '!</h3>
+      <h3>Welcome!</h3>
     </div>
 
     <div id="contactTableContainer">
@@ -60,18 +60,3 @@
     </div>
   </body>
 </html>
-
-<?php
-    $response = '{"message":"User registered successfully.","firstName":"John","error":""}';
-
-    // Parse the JSON response
-    $data = json_decode($response, true);
-
-    // Check if there are any errors
-    if (!empty($data['error'])) {
-        echo '<p>Error: ' . $data['error'] . '</p>';
-    } else {
-        // Display the welcome message with the user's first name
-        echo '<h3>Welcome, ' . $data['firstName'] . '!</h3>';
-    }
-?>
