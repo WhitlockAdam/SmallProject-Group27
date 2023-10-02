@@ -61,7 +61,7 @@ function doLogin() {
     // var tmp = {login:login,password:hash};
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/index.' + extension;
+    let url = urlBase + '/Login.' + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
