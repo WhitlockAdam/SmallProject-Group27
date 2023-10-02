@@ -118,7 +118,7 @@ function readCookie() {
     if (userId < 0) {
 	window.location.href = "index.html";
     } else {
-	document.getElementById("welcomeMessage").textContent = "Welcome,  " + firstName + "!";
+	document.getElementById("welcomeMessage").textContent = "Welcome, " + firstName + "!";
     }
 }
 
