@@ -5,57 +5,90 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function doLogin()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	
-	let login = document.getElementById("loginName").value;
-	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
-	
-	document.getElementById("loginResult").innerHTML = "";
+function doRegister() {
+    let email = document.getElementById("registerEmail").value;
+    let password = document.getElementById("registerPassword").value;
+    let firstName = document.getElementById("registerFirstName").value;
+    let lastName = document.getElementById("registerLastName").value;
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Login.' + extension;
+    document.getElementById("registerResult").innerHTML = "";
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-					return;
-				}
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+    let tmp = {email: email, password: password, firstName: firstName, lastName: lastName};
+    let jsonPayload = JSON.stringify(tmp);
 
-				saveCookie();
-	
-				window.location.href = "color.html";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
+    let url = urlBase + '/Register.' + extension;
 
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                userId = jsonObject.id;
+
+                if (userId < 1) {
+                    document.getElementById("registerResult").innerHTML = "Registration failed. Please try again.";
+                    return;
+                }
+
+                firstName = jsonObject.firstName;
+                lastName = jsonObject.lastName;
+
+                saveCookie();
+
+                window.location.href = "color.html";
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch(err) {
+        document.getElementById("registerResult").innerHTML = err.message;
+    }
+}
+
+function doLogin() {
+    userId = 0;
+    firstName = "";
+    lastName = "";
+    
+    let email = document.getElementById("email").value; // Assuming you have an input field with id="loginEmail"
+    let password = document.getElementById("password").value; // Assuming you have an input field with id="loginPassword"
+    // var hash = md5( password );
+
+    document.getElementById("loginResult").innerHTML = "";
+
+    let tmp = { email: email, password: password };
+    // var tmp = {login:login,password:hash};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/Login.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                userId = jsonObject.id;
+
+                if (userId < 1) {        
+                    document.getElementById("loginResult").innerHTML = "Email/Password combination incorrect";
+                    return;
+                }
+
+                firstName = jsonObject.firstName;
+                lastName = jsonObject.lastName;
+
+                saveCookie();
+
+                window.location.href = "contacts.html";
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch(err) {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
 }
 
 function saveCookie()
