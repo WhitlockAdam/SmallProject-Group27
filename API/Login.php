@@ -4,6 +4,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 // Retrieve the input data from the user
 $inData = getRequestInfo();
+// can we check if the input was actually received
 
 // Initialize user variables
 $id = 0;
