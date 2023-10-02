@@ -91,9 +91,9 @@ if($conn->connect_error) {
 
     // Endpoint for deleting a contact
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'deleteContact') {
-        $contactId = $_POST['id'];
+        $contactId = $_POST['contact_id'];
 
-        $stmt = $conn->prepare("DELETE FROM contacts WHERE id = ?");
+        $stmt = $conn->prepare("DELETE FROM contacts WHERE contact_id = ?");
         $stmt->bind_param("i", $contactId);
 
         if ($stmt->execute()) {
@@ -108,14 +108,14 @@ if($conn->connect_error) {
 
     // Endpoint for editing a contact
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'editContact') {
-        $contactId = $_POST['id'];
+        $contactId = $_POST['contact_id'];
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $email = $_POST['email'];
         $phoneNumber = $_POST['phoneNumber'];
         $address = $_POST['address'];
 
-        $stmt = $conn->prepare("UPDATE contacts SET firstName=?, lastName=?, email=?, phoneNumber=?, address=? WHERE id=?");
+        $stmt = $conn->prepare("UPDATE contacts SET firstName=?, lastName=?, email=?, phoneNumber=?, address=? WHERE contact_id=?");
         $stmt->bind_param("sssssi", $firstName, $lastName, $email, $phoneNumber, $address, $contactId);
 
         if ($stmt->execute()) {
