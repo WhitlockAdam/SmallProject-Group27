@@ -50,18 +50,21 @@ if($conn->connect_error) {
         $email = $data['email'];
         $phoneNumber = $data['phoneNumber'];
         $address = $data['address'];
-
-        $stmt = $conn->prepare("INSERT INTO contacts (firstName, lastName, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $firstName, $lastName, $email, $phoneNumber, $address);
-
+        $userId = $data['user_id'];  // Add this line to get the user_id from the request data
+    
+        $stmt = $conn->prepare("INSERT INTO contacts (user_id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phoneNumber, $address);
+    
         if ($stmt->execute()) {
             returnWithSuccess("Contact added successfully!");
         } else {
             returnWithError("Failed to add contact.");
         }
-
+    
         $stmt->close();
         $conn->close();
+}
+
     }
 
     // Endpoint for searching contacts
@@ -115,7 +118,7 @@ if($conn->connect_error) {
         $phoneNumber = $_POST['phoneNumber'];
         $address = $_POST['address'];
 
-        $stmt = $conn->prepare("UPDATE contacts SET firstName=?, lastName=?, email=?, phoneNumber=?, address=? WHERE contact_id=?");
+        $stmt = $conn->prepare("UPDATE contacts SET firstName=?, lastName=?, email=?, phone=?, address=? WHERE contact_id=?");
         $stmt->bind_param("sssssi", $firstName, $lastName, $email, $phoneNumber, $address, $contactId);
 
         if ($stmt->execute()) {
