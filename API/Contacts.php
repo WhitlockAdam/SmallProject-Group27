@@ -68,6 +68,23 @@ if($conn->connect_error) {
     // Endpoint for getting all contacts for user's id
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
         $data = getRequestInfo();
+        $userId = $data['id'];
+
+        $stmt = $conn->prepare("SELECT * FROM contacts WHERE id=?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $contacts = [];
+        while ($row = $result->fetch_assoc()) {
+            $contacts[] = $row;
+        }
+        $stmt->close();
+        $conn->close();
+        returnWithSuccess($contacts);
+    }
+    /*
+     *     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
+        $data = getRequestInfo();
         $id = $data['id'];
         $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
         $stmt->bind_param("i", $id);
@@ -86,5 +103,6 @@ if($conn->connect_error) {
             returnWithError("No contacts found.");
         }
     }
+     */
 }
 ?>

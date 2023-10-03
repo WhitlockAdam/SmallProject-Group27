@@ -166,7 +166,7 @@ function addContact() {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
                 alert(response.success);
-                refreshContactList();
+                refreshContactList(userId);
             } else {
                 alert(response.error);
             }
@@ -176,25 +176,23 @@ function addContact() {
     xhr.send(JSON.stringify(jsonPayload));
 }
 
-function refreshContactList() {
+function refreshContactList(userId) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", urlBase + '/Contacts.php?action=getAllContacts', true);
-
+    xhr.open("GET", urlBase + '/Contacts.php?action=getAllContacts&userId=' + userId, true);
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            let contacts = JSON.parse(xhr.responseText);
-            displayContacts(contacts);
+            let response = JSON.parse(xhr.responseText);
+            console.log(userId);
+            displayContacts(response);
         }
     };
-
-    xhr.send();
 }
 
-function displayContacts(contacts) {
+function displayContacts(response) {
     let tableBody = document.getElementById("contactTableBody");
     tableBody.innerHTML = "";
 
-    for (let i = 0; i < contacts.length; i++) {
+    for (let i = 0; i < response.length; i++) {
         let contact = contacts[i];
         let row = document.createElement("tr");
 
@@ -217,23 +215,6 @@ function displayContacts(contacts) {
         let addressCell = document.createElement("td");
         addressCell.innerText = contact.address;
         row.appendChild(addressCell);
-
-        /*let actionsCell = document.createElement("td");
-        let editButton = document.createElement("button");
-        editButton.innerText = "Edit";
-        editButton.onclick = function() {
-            // Add code to handle edit button click here
-            editContact(contact.id);
-        };
-        let deleteButton = document.createElement("button");
-        deleteButton.innerText = "Delete";
-        deleteButton.onclick = function() {
-            // Add code to handle delete button click here
-            deleteContact(contact.id);
-        };
-        actionsCell.appendChild(editButton);
-        actionsCell.appendChild(deleteButton);
-        row.appendChild(actionsCell);*/
 
         tableBody.appendChild(row);
     }
