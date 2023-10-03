@@ -65,24 +65,30 @@ if($conn->connect_error) {
         $conn->close();
     }
 
-    // Endpoint for getting all contacts
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
-        $stmt = $conn->prepare("SELECT * FROM contacts");
-        $stmt->execute();
-    
-        $result = $stmt->get_result();
-    
-        if ($result->num_rows > 0) {
-            $contacts = [];
-            while ($row = $result->fetch_assoc()) {
-                $contacts[] = $row;
+        if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $contacts = [];
+                while ($row = $result->fetch_assoc()) {
+                    $contacts[] = $row;
+                }
+                sendResultInfoAsJson(json_encode($contacts));
+            } else {
+                returnWithError("No contacts found.");
             }
-            sendResultInfoAsJson(json_encode($contacts));
+
+            $stmt->close();
         } else {
-            returnWithError("No contacts found.");
+            returnWithError("ID parameter missing.");
         }
-    
-        $stmt->close();
+
         $conn->close();
     }
 
