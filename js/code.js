@@ -189,22 +189,19 @@ function displayContacts() {
                 contactTableBody.innerHTML = "";
 
                 // Loop through the contacts and add them to the table
-                contacts.forEach(function(contact) {
+                for (let i = 0; i < contacts.length; i++) {
+                    let contact = contacts[i];
                     let row = document.createElement("tr");
                     row.innerHTML = `
+                        <td>${contact.id}</td>
                         <td>${contact.firstName}</td>
                         <td>${contact.lastName}</td>
                         <td>${contact.email}</td>
                         <td>${contact.phone}</td>
                         <td>${contact.address}</td>
-                        <td>
-                            <button onclick="editContact(${contact.id})">Edit</button>
-                            <button onclick="deleteContact(${contact.id})">Delete</button>
-                        </td>
                     `;
-
                     contactTableBody.appendChild(row);
-                });
+                }
             } else {
                 console.error("Error fetching contacts:", xhr.status, xhr.statusText);
             }
