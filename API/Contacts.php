@@ -48,9 +48,9 @@ if($conn->connect_error) {
         $firstName = $data['firstName'];
         $lastName = $data['lastName'];
         $email = $data['email'];
-        $phoneNumber = $data['phoneNumber'];
+        $phoneNumber = $data['phone'];
         $address = $data['address'];
-        $userId = $data['user_id'];  // Add this line to get the user_id from the request data
+        $userId = $data['user_id'];
     
         $stmt = $conn->prepare("INSERT INTO contacts (user_id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phoneNumber, $address);
