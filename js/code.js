@@ -153,7 +153,7 @@ function addContact() {
     };
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", urlBase + '/contacts.php?action=addContact', true);
+    xhr.open("POST", urlBase + '/Contacts.php?action=addContact', true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     xhr.onreadystatechange = function() {
@@ -175,7 +175,7 @@ function addContact() {
 
 function refreshContactList() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", urlBase + '/contacts.php?action=getAllContacts', true);
+    xhr.open("GET", urlBase + '/Contacts.php?action=getAllContacts', true);
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -238,7 +238,7 @@ function searchContacts() {
     let searchQuery = document.getElementById("searchQuery").value;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", urlBase + '/contacts.php?action=searchContacts&query=' + encodeURIComponent(searchQuery), true);
+    xhr.open("GET", urlBase + '/Contacts.php?action=searchContacts&query=' + encodeURIComponent(searchQuery), true);
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -252,7 +252,7 @@ function searchContacts() {
 
 function deleteContact(contactId) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", urlBase + '/contacts.php?action=deleteContact', true);
+    xhr.open("POST", urlBase + '/Contacts.php?action=deleteContact', true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {
@@ -287,7 +287,7 @@ function editContact(contactId) {
     };
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", urlBase + '/contacts.php?action=editContact', true);
+    xhr.open("POST", urlBase + '/Contacts.php?action=editContact', true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     xhr.onreadystatechange = function() {
