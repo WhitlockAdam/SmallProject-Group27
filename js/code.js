@@ -1,7 +1,7 @@
 const urlBase = 'http://4331cop.com/SmallProject-Group27/API';
 const extension = 'php';
 
-let user_id = 0;
+let userId = 0;
 let firstName = "";
 let lastName = "";
 
@@ -25,9 +25,9 @@ function doRegister() {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-                user_id = jsonObject.user_id;
+                userId = jsonObject.id;
 
-                if (user_id < 1) {
+                if (userId < 1) {
                     document.getElementById("loginResult").innerHTML = "Registration failed. Please try again.";
                     return;
                 }
@@ -47,7 +47,7 @@ function doRegister() {
 }
 
 function doLogin() {
-    user_id = 0;
+    userId = 0;
     firstName = "";
     lastName = "";
     
@@ -70,9 +70,9 @@ function doLogin() {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-                user_id = jsonObject.user_id;
+                userId = jsonObject.id;
 
-                if (user_id < 1) {        
+                if (userId < 1) {        
                     document.getElementById("loginResult").innerHTML = "Email/Password combination incorrect";
                     return;
                 }
@@ -96,11 +96,11 @@ function saveCookie()
 	let minutes = 20;
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",user_id=" + user_id + ";expires=" + date.toGMTString();
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
 function readCookie() {
-    user_id = -1;
+    userId = -1;
     let data = document.cookie;
     let splits = data.split(",");
     for (var i = 0; i < splits.length; i++) {
@@ -110,12 +110,12 @@ function readCookie() {
 	    firstName = tokens[1];
 	} else if (tokens[0] == "lastName") {
 	    lastName = tokens[1];
-	} else if (tokens[0] == "user_id") {
-	    user_id = parseInt(tokens[1].trim());
+	} else if (tokens[0] == "userId") {
+	    userId = parseInt(tokens[1].trim());
 	}
     }
 
-    if (user_id < 0) {
+    if (userId < 0) {
 	window.location.href = "index.html";
     } else {
 	document.getElementById("welcomeMessage").textContent = "Welcome, " + firstName + "!";
@@ -125,7 +125,7 @@ function readCookie() {
 
 function doLogout()
 {
-	user_id = 0;
+	userId = 0;
 	firstName = "";
 	lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 2025 00:00:00 GMT";
@@ -143,6 +143,9 @@ function addContact() {
     let email = document.getElementById("newEmail").value;
     let phoneNumber = document.getElementById("newPhoneNumber").value;
     let address = document.getElementById("newAddress").value;
+
+    // Assuming you have the user_id stored in a variable called user_id
+    let user_id = 1; // Replace this with the actual user_id
 
     let jsonPayload = {
         user_id: user_id, // Include user_id in the payload
