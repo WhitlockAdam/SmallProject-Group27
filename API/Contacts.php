@@ -57,7 +57,7 @@ if($conn->connect_error) {
         $stmt->bind_param("isssss", $user_id, $firstName, $lastName, $email, $phoneNumber, $address);
         $stmt->execute();
     }
-
+    
     // Endpoint for getting all contacts
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
         // Check if id parameter is set
