@@ -14,19 +14,19 @@ if($conn->connect_error) {
 } else {
     // Prepare SQL statement to insert user details into the database
     $stmt = $conn->prepare("INSERT INTO users (email, password, firstname, lastname) VALUES (?, ?, ?, ?)");
-    
+
     if($stmt) {
         // Bind the input parameters to the SQL statement
         $stmt->bind_param("ssss", $inData["email"], $inData["password"], $inData["firstName"], $inData["lastName"]);
         $stmt->execute();
-        
+
         // Check if the insertion was successful
         if($stmt->affected_rows > 0) {
             returnWithInfo("User registered successfully.", $inData["firstName"]);
         } else {
             returnWithError("Registration failed. Please check your input.");
         }
-        
+
         $stmt->close();
     } else {
         returnWithError("SQL Query Failed");
