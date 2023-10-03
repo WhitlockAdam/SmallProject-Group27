@@ -148,7 +148,7 @@ function addContact() {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        phoneNumber: phoneNumber,
+        phone: phoneNumber,
         address: address
     };
 
