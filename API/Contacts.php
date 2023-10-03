@@ -66,17 +66,8 @@ if($conn->connect_error) {
     }
 
     // Endpoint for getting all contacts
-    // Check if the user is logged in
-    session_start();
-    if (!isset($_SESSION['user_id'])) {
-        returnWithError("User not logged in.");
-    }
-    
-    // Endpoint for getting contacts associated with the logged-in user
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getUserContacts') {
-        $user_id = $_SESSION['user_id'];
-        $stmt = $conn->prepare("SELECT * FROM contacts WHERE user_id = ?");
-        $stmt->bind_param("i", $user_id);
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
+        $stmt = $conn->prepare("SELECT * FROM contacts");
         $stmt->execute();
     
         $result = $stmt->get_result();
@@ -88,12 +79,11 @@ if($conn->connect_error) {
             }
             sendResultInfoAsJson(json_encode($contacts));
         } else {
-            returnWithError("No contacts found for this user.");
+            returnWithError("No contacts found.");
         }
     
         $stmt->close();
         $conn->close();
     }
-
 }
 ?>
