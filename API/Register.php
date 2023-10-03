@@ -10,37 +10,29 @@ $conn = createDBConnection("localhost", "golden", "password", "contactmanager");
 
 // Check if the connection was successful, else return an error
 if($conn->connect_error) {
-        returnWithError($conn->connect_error);
+    returnWithError($conn->connect_error);
 } else {
-        // Prepare SQL statement to insert user details into the database
-        $stmt = $conn->prepare("INSERT INTO users (email, password, firstname, lastname) VALUES (?, ?, ?, ?)");
+    // Prepare SQL statement to insert user details into the database
+    $stmt = $conn->prepare("INSERT INTO users (email, password, firstname, lastname) VALUES (?, ?, ?, ?)");
+    
+    if($stmt) {
+        // Bind the input parameters to the SQL statement
+        $stmt->bind_param("ssss", $inData["email"], $inData["password"], $inData["firstName"], $inData["lastName"]);
+        $stmt->execute();
         
-        if ($stmt) {
-            // Bind the input parameters to the SQL statement
-            $stmt->bind_param("ssss", $inData["email"], $inData["password"], $inData["firstName"], $inData["lastName"]);
-            $stmt->execute();
-        
-            // Check if the insertion was successful
-            if ($stmt->affected_rows > 0) {
-                $user_id = $stmt->insert_id; // Get the auto-generated user_id
-        
-                $stmt->close();
-        
-                // Return user_id along with other information
-                $returnData = array(
-                    "id" => $user_id,
-                    "firstName" => $inData["firstName"],
-                    "lastName" => $inData["lastName"]
-                );
-        
-                returnWithInfo("User registered successfully.", $returnData);
-            } else {
-                returnWithError("Registration failed. Please check your input.");
-            }
+        // Check if the insertion was successful
+        if($stmt->affected_rows > 0) {
+            returnWithInfo("User registered successfully.", $inData["firstName"]);
         } else {
-            returnWithError("SQL Query Failed");
+            returnWithError("Registration failed. Please check your input.");
         }
-$conn->close();
+        
+        $stmt->close();
+    } else {
+        returnWithError("SQL Query Failed");
+    }
+    
+    $conn->close();
 }
 
 // Create connection with SQL database
