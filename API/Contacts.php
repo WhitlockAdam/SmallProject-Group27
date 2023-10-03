@@ -51,7 +51,6 @@ if($conn->connect_error) {
         $phoneNumber = $data['phone'];
         $address = $data['address'];
 <<<<<<< HEAD
-<<<<<<< HEAD
 
         $stmt = $conn->prepare("INSERT INTO contacts (user_id, firstname, lastname, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssss", $user_id, $firstName, $lastName, $email, $phoneNumber, $address);
@@ -72,23 +71,7 @@ if($conn->connect_error) {
         $conn->close();
 >>>>>>> parent of 0e41bb0 (Update Contacts.php)
     }
-=======
-        $userId = $data['id'];
->>>>>>> parent of 0e41bb0 (Update Contacts.php)
     
-        $stmt = $conn->prepare("INSERT INTO contacts (id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phoneNumber, $address);
-    
-        if ($stmt->execute()) {
-            returnWithSuccess("Contact added successfully!");
-        } else {
-            returnWithError("Failed to add contact.");
-        }
-    
-        $stmt->close();
-        $conn->close();
-    }
-
     // Endpoint for getting all contacts
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
         // Check if id parameter is set
