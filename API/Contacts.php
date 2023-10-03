@@ -65,44 +65,27 @@ if($conn->connect_error) {
         $conn->close();
     }
 
-    // Endpoint for getting all contacts for user's id
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
+    // Endpoint for getting all contacts where user id is passed
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getContacts') {
         $data = getRequestInfo();
         $userId = $data['id'];
 
-        $stmt = $conn->prepare("SELECT * FROM contacts WHERE id=?");
+        $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
-        $contacts = [];
-        while ($row = $result->fetch_assoc()) {
-            $contacts[] = $row;
-        }
-        $stmt->close();
-        $conn->close();
-        returnWithSuccess($contacts);
-    }
-    /*
-     *     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
-        $data = getRequestInfo();
-        $id = $data['id'];
-        $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $stmt->store_result();
-
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $contacts = [];
-            while ($row = $result->fetch_assoc()) {
-                $contacts[] = $row;
+        $numRows = $result->num_rows;
+        $contacts = array();
+        if ($numRows > 0) {
+            while($row = $result->fetch_assoc()) {
+                array_push($contacts, $row);
             }
-            sendResultInfoAsJson(json_encode($contacts));
+            sendResultInfoAsJson($contacts);
         } else {
             returnWithError("No contacts found.");
         }
+        $stmt->close();
+        $conn->close();
     }
-     */
 }
 ?>

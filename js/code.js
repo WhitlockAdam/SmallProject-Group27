@@ -166,7 +166,6 @@ function addContact() {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
                 alert(response.success);
-                refreshContactList(userId);
             } else {
                 alert(response.error);
             }
@@ -175,48 +174,3 @@ function addContact() {
 
     xhr.send(JSON.stringify(jsonPayload));
 }
-
-function refreshContactList(userId) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", urlBase + '/Contacts.php?action=getAllContacts&userId=' + userId, true);
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let response = JSON.parse(xhr.responseText);
-            console.log("userId: " + userId);
-            displayContacts(response);
-        }
-    };
-}
-
-function displayContacts(response) {
-    let tableBody = document.getElementById("contactTableBody");
-    tableBody.innerHTML = "";
-
-    for (let i = 0; i < response.length; i++) {
-        let contact = response[i];
-        let row = document.createElement("tr");
-
-        let firstNameCell = document.createElement("td");
-        firstNameCell.innerText = contact.firstName;
-        row.appendChild(firstNameCell);
-
-        let lastNameCell = document.createElement("td");
-        lastNameCell.innerText = contact.lastName;
-        row.appendChild(lastNameCell);
-
-        let emailCell = document.createElement("td");
-        emailCell.innerText = contact.email;
-        row.appendChild(emailCell);
-
-        let phoneNumberCell = document.createElement("td");
-        phoneNumberCell.innerText = contact.phone;
-        row.appendChild(phoneNumberCell);
-
-        let addressCell = document.createElement("td");
-        addressCell.innerText = contact.address;
-        row.appendChild(addressCell);
-
-        tableBody.appendChild(row);
-    }
-}
-
