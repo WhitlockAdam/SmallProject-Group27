@@ -193,7 +193,7 @@ function displayContacts(response) {
     tableBody.innerHTML = "";
 
     for (let i = 0; i < response.length; i++) {
-        let contact = contacts[i];
+        let contact = response[i];
         let row = document.createElement("tr");
 
         let firstNameCell = document.createElement("td");
