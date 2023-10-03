@@ -144,9 +144,6 @@ function addContact() {
     let phoneNumber = document.getElementById("newPhoneNumber").value;
     let address = document.getElementById("newAddress").value;
 
-    // Assuming you have the user_id stored in a variable called user_id
-    let user_id = 1; // Replace this with the actual user_id
-
     let jsonPayload = {
         firstName: firstName,
         lastName: lastName,
