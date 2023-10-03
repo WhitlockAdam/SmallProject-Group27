@@ -174,3 +174,48 @@ function addContact() {
 
     xhr.send(JSON.stringify(jsonPayload));
 }
+
+// write function to display all the contacts
+function displayContacts() {
+    // Read the userId from the cookie
+    let userId = -1;
+    let data = document.cookie;
+    let splits = data.split(",");
+    for (var i = 0; i < splits.length; i++) {
+    let thisOne = splits[i].trim();
+    let tokens = thisOne.split("=");
+        if (tokens[0] === "userId") {
+            userId = parseInt(tokens[1].trim());
+        }
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", urlBase + '/Contacts.php?action=getContacts&id=' + userId, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            let response = JSON.parse(xhr.responseText);
+            let tableBody = document.getElementById("contactTableBody");
+            tableBody.innerHTML = "";
+            for (let i = 0; i < response.length; i++) {
+                let firstName = response[i].firstName;
+                let lastName = response[i].lastName;
+                let email = response[i].email;
+                let phone = response[i].phone;
+                let address = response[i].address;
+                let id = response[i].id;
+                let row = tableBody.insertRow(i);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
+                let cell4 = row.insertCell(3);
+                let cell5 = row.insertCell(4);
+                cell1.innerHTML = firstName;
+                cell2.innerHTML = lastName;
+                cell3.innerHTML = email;
+                cell4.innerHTML = phone;
+                cell5.innerHTML = address;
+            }
+        }
+    };
+}
