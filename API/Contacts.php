@@ -70,7 +70,9 @@ if($conn->connect_error) {
         $data = getRequestInfo();
         $id = $data['id'];
         $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
+        $stmt->bind_param("i", $id);
         $stmt->execute();
+        $stmt->store_result();
 
         $result = $stmt->get_result();
 
