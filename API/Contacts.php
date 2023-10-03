@@ -50,9 +50,9 @@ if($conn->connect_error) {
         $email = $data['email'];
         $phoneNumber = $data['phone'];
         $address = $data['address'];
-        $userId = $data['id'];
+        $userId = $data['user_id'];
     
-        $stmt = $conn->prepare("INSERT INTO contacts (id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO contacts (user_id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phoneNumber, $address);
     
         if ($stmt->execute()) {
@@ -67,22 +67,11 @@ if($conn->connect_error) {
 
     // Endpoint for getting all contacts
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
-        // Check if id parameter is set
-        if (!isset($_GET['id'])) {
-            returnWithError("User ID is missing.");
-            exit;
-        }
-
-        // Retrieve the id from the request
-        $user_id = $_GET['id'];
-
-        // Prepare SQL statement to get contacts for a specific user
-        $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
-        $stmt->bind_param("i", $user_id);
+        $stmt = $conn->prepare("SELECT * FROM contacts");
         $stmt->execute();
-
+    
         $result = $stmt->get_result();
-
+    
         if ($result->num_rows > 0) {
             $contacts = [];
             while ($row = $result->fetch_assoc()) {
@@ -90,9 +79,9 @@ if($conn->connect_error) {
             }
             sendResultInfoAsJson(json_encode($contacts));
         } else {
-            returnWithError("No contacts found for the user.");
+            returnWithError("No contacts found.");
         }
-
+    
         $stmt->close();
         $conn->close();
     }
