@@ -100,8 +100,10 @@ function saveCookie()
 }
 
 function loadContacts() {
-	readCookie();
-	refreshContactList();	
+	setTimeout(function() {
+		readCookie();	
+	}, 100);
+	refreshContactList();
 }
 
 function readCookie() {
