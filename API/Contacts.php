@@ -43,8 +43,6 @@ if($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     // Endpoint for adding a new contact
-    $user_id = $_GET['id'];
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'addContact') {
         $data = getRequestInfo();
         $firstName = $data['firstName'];
@@ -52,12 +50,21 @@ if($conn->connect_error) {
         $email = $data['email'];
         $phoneNumber = $data['phone'];
         $address = $data['address'];
-
-        $stmt = $conn->prepare("INSERT INTO contacts (user_id, firstname, lastname, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssss", $user_id, $firstName, $lastName, $email, $phoneNumber, $address);
-        $stmt->execute();
-    }
+        $userId = $data['id'];
     
+        $stmt = $conn->prepare("INSERT INTO contacts (id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phoneNumber, $address);
+    
+        if ($stmt->execute()) {
+            returnWithSuccess("Contact added successfully!");
+        } else {
+            returnWithError("Failed to add contact.");
+        }
+    
+        $stmt->close();
+        $conn->close();
+    }
+
     // Endpoint for getting all contacts
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
         // Check if id parameter is set
