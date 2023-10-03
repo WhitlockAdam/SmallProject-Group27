@@ -23,7 +23,7 @@ function doRegister() {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
 
@@ -68,7 +68,7 @@ function doLogin() {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
 
@@ -106,11 +106,11 @@ function readCookie() {
     for (var i = 0; i < splits.length; i++) {
 	let thisOne = splits[i].trim();
 	let tokens = thisOne.split("=");
-	if (tokens[0] == "firstName") {
+	if (tokens[0] === "firstName") {
 	    firstName = tokens[1];
-	} else if (tokens[0] == "lastName") {
+	} else if (tokens[0] === "lastName") {
 	    lastName = tokens[1];
-	} else if (tokens[0] == "userId") {
+	} else if (tokens[0] === "userId") {
 	    userId = parseInt(tokens[1].trim());
 	}
     }
@@ -157,7 +157,7 @@ function addContact() {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
                 alert(response.success);
@@ -178,7 +178,7 @@ function refreshContactList() {
     xhr.open("GET", urlBase + '/Contacts.php?action=getAllContacts', true);
 
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             let contacts = JSON.parse(xhr.responseText);
             displayContacts(contacts);
         }
@@ -241,7 +241,7 @@ function searchContacts() {
     xhr.open("GET", urlBase + '/Contacts.php?action=searchContacts&query=' + encodeURIComponent(searchQuery), true);
 
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             let contacts = JSON.parse(xhr.responseText);
             // Code to handle the search results
         }
@@ -256,7 +256,7 @@ function deleteContact(contactId) {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
                 alert(response.success);
@@ -291,7 +291,7 @@ function editContact(contactId) {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
                 alert(response.success);
