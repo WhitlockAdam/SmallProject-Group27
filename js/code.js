@@ -161,6 +161,9 @@ function addContact() {
         if (this.readyState == 4 && this.status == 200) {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
+                alert(response.success);
+                // Code to handle successful addition of contact
+                // You may want to refresh the contact list or perform other actions here
                 refreshContactList(); // Add this line to refresh the contact list
             } else {
                 alert(response.error);
