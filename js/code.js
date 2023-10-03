@@ -99,6 +99,11 @@ function saveCookie()
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
+function loadContacts() {
+	readCookie();
+	refreshContactList();	
+}
+
 function readCookie() {
     userId = -1;
     let data = document.cookie;
