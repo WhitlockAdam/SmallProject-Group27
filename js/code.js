@@ -211,26 +211,6 @@ function displayContacts() {
                     row.appendChild(cell);
                 }
 
-                // Add edit and delete buttons
-                let editCell = document.createElement("td");
-                let editButton = document.createElement("button");
-                editButton.textContent = "Edit";
-                editButton.onclick = function () {
-                    editContact(contact.id);
-                };
-                editCell.appendChild(editButton);
-
-                let deleteCell = document.createElement("td");
-                let deleteButton = document.createElement("button");
-                deleteButton.textContent = "Delete";
-                deleteButton.onclick = function () {
-                    deleteContact(contact.id);
-                };
-                deleteCell.appendChild(deleteButton);
-
-                row.appendChild(editCell);
-                row.appendChild(deleteCell);
-
                 tableBody.appendChild(row);
             }
         }
