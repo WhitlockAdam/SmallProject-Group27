@@ -119,8 +119,8 @@ function readCookie() {
 	window.location.href = "index.html";
     } else {
 	document.getElementById("welcomeMessage").textContent = "Welcome, " + firstName + "!";
-    //print out the id
-    document.getElementById("userId").textContent = userId;
+    //print out the user id to the console
+    console.log(userId);
     }
 }
 
