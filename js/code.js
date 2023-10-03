@@ -268,7 +268,6 @@ function deleteContact(contactId) {
             }
         }
     };
-
     xhr.send("id=" + contactId);
 }
 

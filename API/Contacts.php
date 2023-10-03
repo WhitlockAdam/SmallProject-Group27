@@ -91,7 +91,7 @@ if($conn->connect_error) {
         $data = getRequestInfo();
         $contactId = $data['contact_id']; // Assuming you have a 'contact_id' field in your database table.
 
-        $stmt = $conn->prepare("DELETE FROM contacts WHERE id = ?");
+        $stmt = $conn->prepare("DELETE FROM contacts WHERE contact_id = ?");
         $stmt->bind_param("i", $contactId);
 
         if ($stmt->execute()) {
