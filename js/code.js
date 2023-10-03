@@ -220,11 +220,13 @@ function displayContacts(contacts) {
         editButton.innerText = "Edit";
         editButton.onclick = function() {
             // Add code to handle edit button click here
+            editContact(contact.id);
         };
         let deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete";
         deleteButton.onclick = function() {
             // Add code to handle delete button click here
+            deleteContact(contact.id);
         };
         actionsCell.appendChild(editButton);
         actionsCell.appendChild(deleteButton);
