@@ -65,13 +65,15 @@ if($conn->connect_error) {
         $conn->close();
     }
 
-    // Endpoint for getting all contacts
+    // Endpoint for getting all contacts for user's id
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
+        $data = getRequestInfo();
+        $id = $data['id'];
         $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
         $stmt->execute();
-    
+
         $result = $stmt->get_result();
-    
+
         if ($result->num_rows > 0) {
             $contacts = [];
             while ($row = $result->fetch_assoc()) {
@@ -81,27 +83,40 @@ if($conn->connect_error) {
         } else {
             returnWithError("No contacts found.");
         }
-    
-        $stmt->close();
-        $conn->close();
     }
 
     // Endpoint for deleting a contact
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'deleteContact') {
         $data = getRequestInfo();
-        $contactId = $data['contact_id']; // Assuming you have a 'contact_id' field in your database table.
+        $id = $data['id'];
 
-        $stmt = $conn->prepare("DELETE FROM contacts WHERE contact_id = ?");
-        $stmt->bind_param("i", $contactId);
+        $stmt = $conn->prepare("DELETE FROM contacts WHERE id = ?");
+        $stmt->bind_param("i", $id);
 
         if ($stmt->execute()) {
             returnWithSuccess("Contact deleted successfully!");
         } else {
             returnWithError("Failed to delete contact.");
         }
-
-        $stmt->close();
-        $conn->close();
     }
 }
+/*if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
+    $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $contacts = [];
+        while ($row = $result->fetch_assoc()) {
+            $contacts[] = $row;
+        }
+        sendResultInfoAsJson(json_encode($contacts));
+    } else {
+        returnWithError("No contacts found.");
+    }
+
+    $stmt->close();
+    $conn->close();
+}*/
 ?>
