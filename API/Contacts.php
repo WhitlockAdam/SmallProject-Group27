@@ -67,7 +67,7 @@ if($conn->connect_error) {
 
     // Endpoint for getting all contacts
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
-        $stmt = $conn->prepare("SELECT * FROM contacts");
+        $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
         $stmt->execute();
     
         $result = $stmt->get_result();
