@@ -182,7 +182,7 @@ function refreshContactList(userId) {
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
-            console.log(userId);
+            console.log("userId: " + userId);
             displayContacts(response);
         }
     };
