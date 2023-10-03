@@ -263,6 +263,8 @@ function deleteContact(contactId) {
             if (response.success) {
                 alert(response.success);
                 // Code to handle successful deletion of contact
+
+                refreshContactList();
             } else {
                 alert(response.error);
             }
