@@ -96,6 +96,7 @@ function doLogOut() {
     firstName = "";
     lastName = "";
     saveCookie();
+    let xhr = new XMLHttpRequest();
     xhr.open("POST", urlBase, true);
 }
 
