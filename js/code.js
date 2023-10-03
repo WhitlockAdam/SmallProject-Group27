@@ -97,6 +97,7 @@ function doLogOut() {
     lastName = "";
     saveCookie();
     let xhr = new XMLHttpRequest();
+    let url = 'http://4331cop.com/SmallProject-Group27/';
     xhr.open("POST", urlBase, true);
 }
 
