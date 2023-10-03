@@ -132,6 +132,11 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
+function showAddContactForm() {
+    var form = document.getElementById("addContactForm");
+    form.style.display = (form.style.display === "none") ? "block" : "none";
+}
+
 // Need to implement this
 function addContact() {
     
