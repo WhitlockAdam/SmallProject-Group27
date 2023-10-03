@@ -48,12 +48,12 @@ if($conn->connect_error) {
         $firstName = $data['firstName'];
         $lastName = $data['lastName'];
         $email = $data['email'];
-        $phoneNumber = $data['phone'];
+        $phone = $data['phone'];
         $address = $data['address'];
         $userId = $data['id'];
     
         $stmt = $conn->prepare("INSERT INTO contacts (id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phoneNumber, $address);
+        $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phone, $address);
     
         if ($stmt->execute()) {
             returnWithSuccess("Contact added successfully!");

@@ -141,14 +141,14 @@ function addContact() {
     let firstName = document.getElementById("newFirstName").value;
     let lastName = document.getElementById("newLastName").value;
     let email = document.getElementById("newEmail").value;
-    let phoneNumber = document.getElementById("newPhoneNumber").value;
+    let phone = document.getElementById("newPhoneNumber").value;
     let address = document.getElementById("newAddress").value;
 
     let jsonPayload = {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        phone: phoneNumber,
+        phone: phone,
         address: address
     };
 
@@ -208,14 +208,14 @@ function displayContacts(contacts) {
         row.appendChild(emailCell);
 
         let phoneNumberCell = document.createElement("td");
-        phoneNumberCell.innerText = contact.phoneNumber;
+        phoneNumberCell.innerText = contact.phone;
         row.appendChild(phoneNumberCell);
 
         let addressCell = document.createElement("td");
         addressCell.innerText = contact.address;
         row.appendChild(addressCell);
 
-        let actionsCell = document.createElement("td");
+        /*let actionsCell = document.createElement("td");
         let editButton = document.createElement("button");
         editButton.innerText = "Edit";
         editButton.onclick = function() {
@@ -230,7 +230,7 @@ function displayContacts(contacts) {
         };
         actionsCell.appendChild(editButton);
         actionsCell.appendChild(deleteButton);
-        row.appendChild(actionsCell);
+        row.appendChild(actionsCell);*/
 
         tableBody.appendChild(row);
     }
@@ -285,7 +285,7 @@ function editContact(contactId) {
         firstName: updatedFirstName,
         lastName: updatedLastName,
         email: updatedEmail,
-        phoneNumber: updatedPhoneNumber,
+        phone: updatedPhoneNumber,
         address: updatedAddress
     };
 
