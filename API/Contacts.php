@@ -99,34 +99,6 @@ if($conn->connect_error) {
         $conn->close();
     }
 
-    // Endpoint for searching for contacts
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'searchContacts') {
-        $searchTerm = $_GET['searchTerm'];
-
-        // Prepare and execute a SELECT query
-        $stmt = $conn->prepare("SELECT * FROM contacts WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ? OR phone LIKE ? OR address LIKE ?");
-        $stmt->bind_param("ssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm);
-
-        if ($stmt->execute()) {
-            $result = $stmt->get_result();
-
-            // Check if any rows were returned
-            if ($result->num_rows > 0) {
-                $contacts = array();
-
-                // Fetch data and store in an array
-                while ($row = $result->fetch_assoc()) {
-                    $contacts[] = $row;
-                }
-
-                // Return the contacts as JSON
-                $retValue = json_encode($contacts);
-                sendResultInfoAsJson($retValue);
-            } else {
-                returnWithError("No contacts found for this user.");
-            }
-        }
-    }
 
 }
 ?>
