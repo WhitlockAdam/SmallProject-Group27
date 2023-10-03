@@ -65,25 +65,19 @@ if($conn->connect_error) {
         $conn->close();
     }
 
-    // Endpoint for getting all contacts where user id is passed
+    // Endpoint for getting all contacts where user id is passed in
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getContacts') {
-        $data = getRequestInfo();
-        $userId = $data['id'];
-
+        $userId = $_GET['id'];
         $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
-        $numRows = $result->num_rows;
         $contacts = array();
-        if ($numRows > 0) {
-            while($row = $result->fetch_assoc()) {
-                array_push($contacts, $row);
-            }
-            sendResultInfoAsJson($contacts);
-        } else {
-            returnWithError("No contacts found.");
+        while ($row = $result->fetch_assoc()) {
+            $contacts[] = $row;
         }
+        $retValue = '{"contacts":' . json_encode($contacts) . '}';
+        sendResultInfoAsJson($retValue);
         $stmt->close();
         $conn->close();
     }
