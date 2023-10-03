@@ -119,17 +119,9 @@ function readCookie() {
 	window.location.href = "index.html";
     } else {
 	document.getElementById("welcomeMessage").textContent = "Welcome, " + firstName + "!";
+    //print out the id
+    document.getElementById("userId").textContent = userId;
     }
-}
-
-
-function doLogout()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 2025 00:00:00 GMT";
-	window.location.href = "index.html";
 }
 
 function showAddContactForm() {
@@ -236,77 +228,5 @@ function displayContacts(contacts) {
 
         tableBody.appendChild(row);
     }
-}
-
-function searchContacts() {
-    let searchQuery = document.getElementById("searchQuery").value;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", urlBase + '/Contacts.php?action=searchContacts&query=' + encodeURIComponent(searchQuery), true);
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let contacts = JSON.parse(xhr.responseText);
-            // Code to handle the search results
-        }
-    };
-
-    xhr.send();
-}
-
-function deleteContact(contactId) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", urlBase + '/Contacts.php?action=deleteContact', true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                alert(response.success);
-                // Code to handle successful deletion of contact
-
-                refreshContactList();
-            } else {
-                alert(response.error);
-            }
-        }
-    };
-    xhr.send("id=" + contactId);
-}
-
-function editContact(contactId) {
-    let updatedFirstName = document.getElementById("editFirstName").value;
-    let updatedLastName = document.getElementById("editLastName").value;
-    let updatedEmail = document.getElementById("editEmail").value;
-    let updatedPhoneNumber = document.getElementById("editPhoneNumber").value;
-    let updatedAddress = document.getElementById("editAddress").value;
-
-    let jsonPayload = {
-        id: contactId,
-        firstName: updatedFirstName,
-        lastName: updatedLastName,
-        email: updatedEmail,
-        phone: updatedPhoneNumber,
-        address: updatedAddress
-    };
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", urlBase + '/Contacts.php?action=editContact', true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                alert(response.success);
-                // Code to handle successful editing of contact
-            } else {
-                alert(response.error);
-            }
-        }
-    };
-
-    xhr.send(JSON.stringify(jsonPayload));
 }
 
