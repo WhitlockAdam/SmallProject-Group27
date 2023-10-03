@@ -180,57 +180,57 @@ function displayContacts() {
     let data = document.cookie;
     let splits = data.split(",");
     for (var i = 0; i < splits.length; i++) {
-    let thisOne = splits[i].trim();
-    let tokens = thisOne.split("=");
-    if (tokens[0] === "userId") {
-        userId = parseInt(tokens[1].trim());
-    }
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", `${urlBase}/Contacts.php?action=getContacts&id=${userId}`, true);
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let contacts = JSON.parse(xhr.responseText);
-
-            let tableBody = document.getElementById("contactTableBody");
-            tableBody.innerHTML = ""; // Clear existing data
-
-            contacts.forEach(contact => {
-                let row = document.createElement("tr");
-
-                let columns = ["firstName", "lastName", "email", "phone", "address"];
-
-                columns.forEach(column => {
-                    let cell = document.createElement("td");
-                    cell.textContent = contact[column];
-                    row.appendChild(cell);
-                });
-
-                // Add edit and delete buttons
-                let editCell = document.createElement("td");
-                let editButton = document.createElement("button");
-                editButton.textContent = "Edit";
-                editButton.onclick = function() {
-                    editContact(contact.id);
-                };
-                editCell.appendChild(editButton);
-
-                let deleteCell = document.createElement("td");
-                let deleteButton = document.createElement("button");
-                deleteButton.textContent = "Delete";
-                deleteButton.onclick = function() {
-                    deleteContact(contact.id);
-                };
-                deleteCell.appendChild(deleteButton);
-
-                row.appendChild(editCell);
-                row.appendChild(deleteCell);
-
-                tableBody.appendChild(row);
-            });
+        let thisOne = splits[i].trim();
+        let tokens = thisOne.split("=");
+        if (tokens[0] === "userId") {
+            userId = parseInt(tokens[1].trim());
         }
-    };
 
-    xhr.send();
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", `${urlBase}/Contacts.php?action=getContacts&id=${userId}`, true);
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                let contacts = JSON.parse(xhr.responseText);
+
+                let tableBody = document.getElementById("contactTableBody");
+                tableBody.innerHTML = ""; // Clear existing data
+
+                contacts.forEach(contact => {
+                    let row = document.createElement("tr");
+
+                    let columns = ["firstName", "lastName", "email", "phone", "address"];
+
+                    columns.forEach(column => {
+                        let cell = document.createElement("td");
+                        cell.textContent = contact[column];
+                        row.appendChild(cell);
+                    });
+
+                    // Add edit and delete buttons
+                    let editCell = document.createElement("td");
+                    let editButton = document.createElement("button");
+                    editButton.textContent = "Edit";
+                    editButton.onclick = function () {
+                        editContact(contact.id);
+                    };
+                    editCell.appendChild(editButton);
+
+                    let deleteCell = document.createElement("td");
+                    let deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Delete";
+                    deleteButton.onclick = function () {
+                        deleteContact(contact.id);
+                    };
+                    deleteCell.appendChild(deleteButton);
+
+                    row.appendChild(editCell);
+                    row.appendChild(deleteCell);
+
+                    tableBody.appendChild(row);
+                });
+            }
+        };
+        xhr.send();
+    }
 }
