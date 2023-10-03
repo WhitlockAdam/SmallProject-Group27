@@ -100,23 +100,4 @@ if($conn->connect_error) {
         }
     }
 }
-/*if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
-    $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $contacts = [];
-        while ($row = $result->fetch_assoc()) {
-            $contacts[] = $row;
-        }
-        sendResultInfoAsJson(json_encode($contacts));
-    } else {
-        returnWithError("No contacts found.");
-    }
-
-    $stmt->close();
-    $conn->close();
-}*/
 ?>

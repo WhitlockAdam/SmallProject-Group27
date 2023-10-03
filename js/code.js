@@ -144,7 +144,11 @@ function addContact() {
     let phone = document.getElementById("newPhoneNumber").value;
     let address = document.getElementById("newAddress").value;
 
+    // Read the userId from the cookie
+    let userId = readCookie();
+
     let jsonPayload = {
+        id: userId,
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -161,9 +165,7 @@ function addContact() {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
                 alert(response.success);
-                // Code to handle successful addition of contact
-                // You may want to refresh the contact list or perform other actions here
-                refreshContactList(); // Add this line to refresh the contact list
+                refreshContactList();
             } else {
                 alert(response.error);
             }
