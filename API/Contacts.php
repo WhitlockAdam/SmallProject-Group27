@@ -71,7 +71,7 @@ if($conn->connect_error) {
         $conn->close();
 >>>>>>> parent of 0e41bb0 (Update Contacts.php)
     }
-    
+
     // Endpoint for getting all contacts
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllContacts') {
         // Check if id parameter is set
