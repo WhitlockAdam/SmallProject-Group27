@@ -1,8 +1,7 @@
 const urlBase = 'http://4331cop.com/SmallProject-Group27/API';
 const extension = 'php';
 
-let userId = JSON.parse(document.cookie).id;
-console.log(userId);
+let userId = 0;
 let firstName = "";
 let lastName = "";
 
@@ -139,7 +138,6 @@ function showAddContactForm() {
 }
 
 function addContact() {
-    console.log(userId)
     let firstName = document.getElementById("newFirstName").value;
     let lastName = document.getElementById("newLastName").value;
     let email = document.getElementById("newEmail").value;
