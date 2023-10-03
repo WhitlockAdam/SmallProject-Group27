@@ -133,27 +133,47 @@ function addContact() {
     let firstName = document.getElementById("newFirstName").value;
     let lastName = document.getElementById("newLastName").value;
     let email = document.getElementById("newEmail").value;
-    let phoneNumber = document.getElementById("newPhoneNumber").value;
+    let phone = document.getElementById("newPhoneNumber").value;
     let address = document.getElementById("newAddress").value;
 
-    let tmp = {firstName: firstName, lastName: lastName, email: email, phone: phoneNumber, address: address};
-    let jsonPayload = JSON.stringify(tmp);
+    // Read the userId from the cookie
+    let userId = -1;
+    let data = document.cookie;
+    let splits = data.split(",");
+    for (var i = 0; i < splits.length; i++) {
+    let thisOne = splits[i].trim();
+    let tokens = thisOne.split("=");
+        if (tokens[0] === "userId") {
+            userId = parseInt(tokens[1].trim());
+        }
+    }
 
-    let url = urlBase + '/Contacts.php?action=addContact';
+    let jsonPayload = {
+        id: userId,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        address: address
+    };
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
+    xhr.open("POST", urlBase + '/Contacts.php?action=addContact', true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            let response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                alert(response.success);
                 refreshContactList();
+            } else {
+                alert(response.error);
             }
-        };
-        xhr.send(jsonPayload);
-    } catch(err) {
-        document.getElementById("loginResult").innerHTML = err.message;
-    }
+        }
+    };
+
+    xhr.send(JSON.stringify(jsonPayload));
 }
 
 function refreshContactList() {
