@@ -137,9 +137,44 @@ function showAddContactForm() {
     form.style.display = (form.style.display === "none") ? "block" : "none";
 }
 
-// Need to implement this
 function addContact() {
-    
+    var form = document.getElementById("addContactForm");
+
+    let firstName = form.querySelector("#newFirstName").value;
+    let lastName = form.querySelector("#newLastName").value;
+    let email = form.querySelector("#newEmail").value;
+    let phoneNumber = form.querySelector("#newPhoneNumber").value;
+    let address = form.querySelector("#newAddress").value;
+
+    let jsonPayload = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+        address: address
+    };
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", urlBase + '/contacts.php?action=addContact', true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                alert(response.success);
+                // Code to handle successful addition of contact
+                // You may want to refresh the contact list or perform other actions here
+            } else {
+                alert(response.error);
+            }
+        }
+    };
+
+    xhr.send(JSON.stringify(jsonPayload));
+
+    // Hide the form after submission
+    form.style.display = "none";
 }
 
 function searchContacts() {
