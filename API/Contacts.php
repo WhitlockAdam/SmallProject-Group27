@@ -50,9 +50,9 @@ if($conn->connect_error) {
         $email = $data['email'];
         $phoneNumber = $data['phone'];
         $address = $data['address'];
-        $userId = $data['user_id'];
+        $userId = $data['id'];
     
-        $stmt = $conn->prepare("INSERT INTO contacts (user_id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO contacts (id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phoneNumber, $address);
     
         if ($stmt->execute()) {
