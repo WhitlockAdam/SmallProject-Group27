@@ -163,7 +163,7 @@ function addContact() {
                 alert(response.success);
                 // Code to handle successful addition of contact
                 // You may want to refresh the contact list or perform other actions here
-                //refreshContactList(); // Add this line to refresh the contact list
+                refreshContactList(); // Add this line to refresh the contact list
             } else {
                 alert(response.error);
             }
@@ -173,70 +173,66 @@ function addContact() {
     xhr.send(JSON.stringify(jsonPayload));
 }
 
-function refreshContactList(userId) {
+function refreshContactList() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", urlBase + `/Contacts.php?action=getAllContacts&id=${userId}`, true);
+    xhr.open("GET", urlBase + '/Contacts.php?action=getAllContacts', true);
 
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let contacts = JSON.parse(xhr.responseText);
-            displayContacts(contacts, userId);
+            displayContacts(contacts);
         }
     };
 
     xhr.send();
 }
 
-function displayContacts(contacts, userId) {
+function displayContacts(contacts) {
     let tableBody = document.getElementById("contactTableBody");
     tableBody.innerHTML = "";
 
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
+        let row = document.createElement("tr");
 
-        // Check if the contact's ID matches the user's ID
-        if (contact.id === userId) {
-            let row = document.createElement("tr");
+        let firstNameCell = document.createElement("td");
+        firstNameCell.innerText = contact.firstName;
+        row.appendChild(firstNameCell);
 
-            let firstNameCell = document.createElement("td");
-            firstNameCell.innerText = contact.firstName;
-            row.appendChild(firstNameCell);
+        let lastNameCell = document.createElement("td");
+        lastNameCell.innerText = contact.lastName;
+        row.appendChild(lastNameCell);
 
-            let lastNameCell = document.createElement("td");
-            lastNameCell.innerText = contact.lastName;
-            row.appendChild(lastNameCell);
+        let emailCell = document.createElement("td");
+        emailCell.innerText = contact.email;
+        row.appendChild(emailCell);
 
-            let emailCell = document.createElement("td");
-            emailCell.innerText = contact.email;
-            row.appendChild(emailCell);
+        let phoneNumberCell = document.createElement("td");
+        phoneNumberCell.innerText = contact.phoneNumber;
+        row.appendChild(phoneNumberCell);
 
-            let phoneNumberCell = document.createElement("td");
-            phoneNumberCell.innerText = contact.phoneNumber;
-            row.appendChild(phoneNumberCell);
+        let addressCell = document.createElement("td");
+        addressCell.innerText = contact.address;
+        row.appendChild(addressCell);
 
-            let addressCell = document.createElement("td");
-            addressCell.innerText = contact.address;
-            row.appendChild(addressCell);
+        let actionsCell = document.createElement("td");
+        let editButton = document.createElement("button");
+        editButton.innerText = "Edit";
+        editButton.onclick = function() {
+            // Add code to handle edit button click here
+            editContact(contact.id);
+        };
+        let deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.onclick = function() {
+            // Add code to handle delete button click here
+            deleteContact(contact.id);
+        };
+        actionsCell.appendChild(editButton);
+        actionsCell.appendChild(deleteButton);
+        row.appendChild(actionsCell);
 
-            let actionsCell = document.createElement("td");
-            let editButton = document.createElement("button");
-            editButton.innerText = "Edit";
-            editButton.onclick = function() {
-                // Add code to handle edit button click here
-                editContact(contact.id);
-            };
-            let deleteButton = document.createElement("button");
-            deleteButton.innerText = "Delete";
-            deleteButton.onclick = function() {
-                // Add code to handle delete button click here
-                deleteContact(contact.id);
-            };
-            actionsCell.appendChild(editButton);
-            actionsCell.appendChild(deleteButton);
-            row.appendChild(actionsCell);
-
-            tableBody.appendChild(row);
-        }
+        tableBody.appendChild(row);
     }
 }
 
