@@ -91,6 +91,14 @@ function doLogin() {
     }
 }
 
+function doLogOut() {
+    userId = 0;
+    firstName = "";
+    lastName = "";
+    saveCookie();
+    xhr.open("POST", urlBase, true);
+}
+
 function saveCookie()
 {
 	let minutes = 20;
