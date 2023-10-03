@@ -85,5 +85,23 @@ if($conn->connect_error) {
         $stmt->close();
         $conn->close();
     }
+
+    // Endpoint for deleting a contact
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'deleteContact') {
+        $data = getRequestInfo();
+        $contactId = $data['contact_id']; // Assuming you have a 'contact_id' field in your database table.
+
+        $stmt = $conn->prepare("DELETE FROM contacts WHERE id = ?");
+        $stmt->bind_param("i", $contactId);
+
+        if ($stmt->execute()) {
+            returnWithSuccess("Contact deleted successfully!");
+        } else {
+            returnWithError("Failed to delete contact.");
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
 }
 ?>
