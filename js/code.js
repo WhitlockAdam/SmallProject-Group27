@@ -166,6 +166,7 @@ function addContact() {
             let response = JSON.parse(xhr.responseText);
             if (response.success) {
                 alert(response.success);
+                displayContacts();
             } else {
                 alert(response.error);
             }
