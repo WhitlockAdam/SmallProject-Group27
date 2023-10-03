@@ -174,3 +174,42 @@ function addContact() {
 
     xhr.send(JSON.stringify(jsonPayload));
 }
+
+function displayContacts() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `${urlBase}/Contacts.php?action=getContacts&id=${userId}`, true);
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                let contacts = JSON.parse(xhr.responseText);
+                let contactTableBody = document.getElementById("contactTableBody");
+
+                // Clear existing content in the table body
+                contactTableBody.innerHTML = "";
+
+                // Loop through the contacts and add them to the table
+                contacts.forEach(function(contact) {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${contact.firstName}</td>
+                        <td>${contact.lastName}</td>
+                        <td>${contact.email}</td>
+                        <td>${contact.phone}</td>
+                        <td>${contact.address}</td>
+                        <td>
+                            <button onclick="editContact(${contact.id})">Edit</button>
+                            <button onclick="deleteContact(${contact.id})">Delete</button>
+                        </td>
+                    `;
+
+                    contactTableBody.appendChild(row);
+                });
+            } else {
+                console.error("Error fetching contacts:", xhr.status, xhr.statusText);
+            }
+        }
+    };
+
+    xhr.send();
+}

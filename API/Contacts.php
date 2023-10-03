@@ -64,5 +64,41 @@ if($conn->connect_error) {
         $stmt->close();
         $conn->close();
     }
+
+    // Endpoint for getting all contacts
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getContacts') {
+        $userId = $_GET['id'];
+
+        // Prepare and execute a SELECT query
+        $stmt = $conn->prepare("SELECT * FROM contacts WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+
+            // Check if any rows were returned
+            if ($result->num_rows > 0) {
+                $contacts = array();
+
+                // Fetch data and store in an array
+                while ($row = $result->fetch_assoc()) {
+                    $contacts[] = $row;
+                }
+
+                // Return the contacts as JSON
+                $retValue = json_encode($contacts);
+                sendResultInfoAsJson($retValue);
+            } else {
+                returnWithError("No contacts found for this user.");
+            }
+        } else {
+            returnWithError("Failed to retrieve contacts.");
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
+
+
 }
 ?>
