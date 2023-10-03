@@ -174,6 +174,14 @@ function addContact() {
     };
 
     xhr.send(JSON.stringify(jsonPayload));
+
+    // Clear the form and close it
+    document.getElementById("addContactForm").style.display = "none";
+    document.getElementById("newFirstName").value = "";
+    document.getElementById("newLastName").value = "";
+    document.getElementById("newEmail").value = "";
+    document.getElementById("newPhoneNumber").value = "";
+    document.getElementById("newAddress").value = "";
 }
 
 function displayContacts() {
