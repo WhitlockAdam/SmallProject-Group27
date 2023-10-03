@@ -133,38 +133,27 @@ function addContact() {
     let firstName = document.getElementById("newFirstName").value;
     let lastName = document.getElementById("newLastName").value;
     let email = document.getElementById("newEmail").value;
-    let phone = document.getElementById("newPhoneNumber").value;
+    let phoneNumber = document.getElementById("newPhoneNumber").value;
     let address = document.getElementById("newAddress").value;
 
-    // Read the userId from the cookie
-    let userId = readCookie();
+    let tmp = {firstName: firstName, lastName: lastName, email: email, phone: phoneNumber, address: address};
+    let jsonPayload = JSON.stringify(tmp);
 
-    let jsonPayload = {
-        id: userId,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        phone: phone,
-        address: address
-    };
+    let url = urlBase + '/Contacts.php?action=addContact';
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", urlBase + '/Contacts.php?action=addContact', true);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                alert(response.success);
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
                 refreshContactList();
-            } else {
-                alert(response.error);
             }
-        }
-    };
-
-    xhr.send(JSON.stringify(jsonPayload));
+        };
+        xhr.send(jsonPayload);
+    } catch(err) {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
 }
 
 function refreshContactList() {
