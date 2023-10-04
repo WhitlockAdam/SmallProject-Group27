@@ -139,7 +139,7 @@ tr:last-of-type td:last-of-type {
   padding: 5px;
   color: white;
   border-radius: 40px;
-  position: relative;
+  position: center;
   width: 80%;
 }
 
