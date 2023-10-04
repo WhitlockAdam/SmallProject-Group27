@@ -116,6 +116,7 @@ function readCookie() {
 	let thisOne = splits[i].trim();
 	let tokens = thisOne.split("=");
 	if (tokens[0] === "firstName") {
+		console.log("FN");
 	    firstName = tokens[1];
 	} else if (tokens[0] === "lastName") {
 	    lastName = tokens[1];
