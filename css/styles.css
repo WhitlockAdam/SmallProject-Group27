@@ -118,7 +118,7 @@ tr:last-of-type td:last-of-type {
 
 #logoIcon {
   display: flex;
-  align-items: center;
+  align-items: left;
 }
 
 .navBar > a {
