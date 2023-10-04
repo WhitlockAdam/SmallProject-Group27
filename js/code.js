@@ -230,7 +230,8 @@ function displayContacts() {
                         let editButton = document.createElement("button");
                         editButton.textContent = "Edit";
                         editButton.addEventListener("click", function() {
-                            editContact(contact.contact_id);
+                            // Call a function to handle edit action here, passing contact.id
+                            editContact(contact.id);
                         });
 
                         let deleteButton = document.createElement("button");
@@ -255,32 +256,10 @@ function displayContacts() {
     xhr.send();
 }
 
-function showEditContactForm() {
-    var form = document.getElementById("editContactForm");
-    form.style.display = (form.style.display === "none") ? "block" : "none";
-}
 // Add functions to handle edit and delete actions
 function editContact(contactId) {
-    console.log(contactId);
-    let url = `${urlBase}/Contacts.php?action=editContactById`;
-    let jsonPayload = JSON.stringify({ contact_id: contactId });
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                alert(response.success);
-                displayContacts();
-            } else {
-                alert(response.error);
-            }
-        }
-    };
-    xhr.send(jsonPayload);
+    // Implement edit logic here using contactId
+    // You can show a modal or redirect to an edit page, etc.
 }
 
 function deleteContact(contactId) {

@@ -52,7 +52,7 @@
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Address</th>
-                <th>Actions</th>
+                <th>Actions</th> <!-- Add a column for edit and delete buttons -->
             </tr>
         </thead>
         <tbody id="contactTableBody"> <!-- Add an ID to the table body for dynamically adding contacts -->
@@ -74,23 +74,6 @@
         <input type="tel" id="newPhoneNumber" required><br>
         <label for="newAddress">Address:</label>
         <input type="text" id="newAddress" required><br>
-        <input type="submit" value="Add Contact">
-      </form>
-    </div>
-
-    <div id="editContactForm" style="display:none;">
-      <h2>Add New Contact</h2>
-      <form onsubmit="editContact(); return false;">
-        <label for="editFirstName">First Name:</label>
-        <input type="text" id="editFirstName" required><br>
-        <label for="editLastName">Last Name:</label>
-        <input type="text" id="editLastName" required><br>
-        <label for="editEmail">Email:</label>
-        <input type="email" id="editEmail" required><br>
-        <label for="editPhoneNumber">Phone Number:</label>
-        <input type="tel" id="editPhoneNumber" required><br>
-        <label for="editAddress">Address:</label>
-        <input type="text" id="editAddress" required><br>
         <input type="submit" value="Add Contact">
       </form>
     </div>

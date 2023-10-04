@@ -122,27 +122,6 @@ if($conn->connect_error) {
         $conn->close();
     }
 
-    // Endpoint for editing a contact by contact_id
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'editContactById') {
-        $data = getRequestInfo();
-        $contactId = $data['contact_id'];
-        $firstName = $data['firstName'];
-        $lastName = $data['lastName'];
-        $email = $data['email'];
-        $phone = $data['phone'];
-        $address = $data['address'];
 
-        $stmt = $conn->prepare("UPDATE contacts SET firstName = ?, lastName = ?, email = ?, phone = ?, address = ? WHERE contact_id = ?");
-        $stmt->bind_param("sssssi", $firstName, $lastName, $email, $phone, $address, $contactId);
-
-        if ($stmt->execute()) {
-            returnWithSuccess("Contact with ID $contactId updated successfully!");
-        } else {
-            returnWithError("Failed to update contact.");
-        }
-
-        $stmt->close();
-        $conn->close();
-    }
 }
 ?>
