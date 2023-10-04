@@ -237,8 +237,6 @@ function displayContacts() {
                         let deleteButton = document.createElement("button");
                         deleteButton.textContent = "Delete";
                         deleteButton.addEventListener("click", function() {
-                            // Call a function to handle delete action here, passing contact.id
-                            console.log(contact.id);
                             deleteContact(contact.id);
                         });
 
@@ -265,8 +263,26 @@ function editContact(contactId) {
 }
 
 function deleteContact(contactId) {
-    // Implement delete logic here using contactId
-    // You can show a confirmation dialog and send a request to delete the contact
+    let url = `${urlBase}/Contacts.php?action=deleteContactById`;
+    let jsonPayload = JSON.stringify({ contact_id: contactId });
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            let response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                alert(response.success);
+                displayContacts();
+            } else {
+                alert(response.error);
+            }
+        }
+    };
+
+    xhr.send(jsonPayload);
 }
 
 function searchContacts(){

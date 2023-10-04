@@ -51,16 +51,20 @@ if($conn->connect_error) {
         $phone = $data['phone'];
         $address = $data['address'];
         $userId = $data['id'];
-    
+
         $stmt = $conn->prepare("INSERT INTO contacts (id, firstName, lastName, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssss", $userId, $firstName, $lastName, $email, $phone, $address);
-    
+
         if ($stmt->execute()) {
-            returnWithSuccess("Contact added successfully!");
+            // Get the automatically generated contact_id after insert
+            $contactId = $stmt->insert_id;
+
+            // Return the contact_id as part of the success message
+            returnWithSuccess("Contact added successfully! Contact ID: " . $contactId);
         } else {
             returnWithError("Failed to add contact.");
         }
-    
+
         $stmt->close();
         $conn->close();
     }
@@ -93,6 +97,25 @@ if($conn->connect_error) {
             }
         } else {
             returnWithError("Failed to retrieve contacts.");
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
+
+    // Endpoint for deleting a contact by contact_id
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'deleteContactById') {
+        $data = getRequestInfo();
+        $contactId = $data['contact_id'];
+
+        // Prepare and execute a DELETE query
+        $stmt = $conn->prepare("DELETE FROM contacts WHERE contact_id = ?");
+        $stmt->bind_param("i", $contactId);
+
+        if ($stmt->execute()) {
+            returnWithSuccess("Contact with ID $contactId deleted successfully!");
+        } else {
+            returnWithError("Failed to delete contact.");
         }
 
         $stmt->close();
