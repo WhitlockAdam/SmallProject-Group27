@@ -140,6 +140,7 @@ tr:last-of-type td:last-of-type {
   color: white;
   border-radius: 40px;
   position: relative;
+  width: 80%;
 }
 
 #welcomeMessage {
