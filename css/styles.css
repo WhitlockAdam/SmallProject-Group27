@@ -117,6 +117,7 @@ tr:last-of-type td:last-of-type {
 }
 
 #logoIcon {
+  width: 25%;
   display: flex;
   align-items: left;
 }
