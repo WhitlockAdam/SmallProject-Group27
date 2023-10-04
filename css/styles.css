@@ -103,7 +103,6 @@ tr:last-of-type td:last-of-type {
 #headerBar {
   margin-top: 10px;
   margin: 10px 20px;
-  display: flex;
   color: white;
   padding: 10px;
   justify-content: space-around;
