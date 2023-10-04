@@ -230,8 +230,7 @@ function displayContacts() {
                         let editButton = document.createElement("button");
                         editButton.textContent = "Edit";
                         editButton.addEventListener("click", function() {
-                            showEditContactForm();
-                            editContact(contact.contact_id)
+                            editContact(contact.contact_id);
                         });
 
                         let deleteButton = document.createElement("button");
