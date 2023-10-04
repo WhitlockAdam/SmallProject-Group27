@@ -142,6 +142,12 @@ tr:last-of-type td:last-of-type {
   position: relative;
 }
 
+#welcomeMessage {
+  width: 25%;
+  display: flex;
+  align-items: right;
+}
+
 .buttons {
   font-size: 30px;
   text-align: center;
