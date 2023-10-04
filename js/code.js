@@ -238,6 +238,7 @@ function displayContacts() {
                         deleteButton.textContent = "Delete";
                         deleteButton.addEventListener("click", function() {
                             // Call a function to handle delete action here, passing contact.id
+                            console.log(contact.id);
                             deleteContact(contact.id);
                         });
 
