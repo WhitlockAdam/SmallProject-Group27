@@ -227,3 +227,46 @@ function displayContacts() {
     };
     xhr.send();
 }
+function searchContacts(var query){
+    let userId = -1;
+    let data = document.cookie;
+    let splits = data.split(",");
+    for (var i = 0; i < splits.length; i++) {
+    let thisOne = splits[i].trim();
+    let tokens = thisOne.split("=");
+        if (tokens[0] === "userId") {
+            userId = parseInt(tokens[1].trim());
+        }
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `${urlBase}/Contacts.php?action=getContacts&id=${userId}`, true);
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let contacts = JSON.parse(xhr.responseText);
+
+            let tableBody = document.getElementById("contactTableBody");
+            tableBody.innerHTML = ""; // Clear existing data
+
+            for (let i = 0; i < contacts.length; i++) {
+                let contact = contacts[i];
+                let row = document.createElement("tr");
+
+                let columns = ["firstName", "lastName", "email", "phone", "address"];
+
+                for (let j = 0; j < columns.length; j++) {
+                    let column = columns[j];
+                    let cell = document.createElement("td");
+                    cell.textContent = contact[column];
+                    row.appendChild(cell);
+                }
+		if (firstName.includes(searchQuery) || lastName.include(searchQuery) || email.includes(searchQuery)) {
+                    searchResults.push(contact);
+                }
+                tableBody.appendChild(row);
+            }
+        }
+    };
+    xhr.send();
+}
