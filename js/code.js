@@ -261,10 +261,9 @@ function searchContacts(var query){
                     cell.textContent = contact[column];
                     row.appendChild(cell);
                 }
-		if (firstName.includes(searchQuery) || lastName.include(searchQuery) || email.includes(searchQuery)) {
-                    searchResults.push(contact);
+		if (firstName.includes(query) || lastName.include(query) || email.includes(query)) {
+                    tableBody.appendChild(row);
                 }
-                tableBody.appendChild(row);
             }
         }
     };
