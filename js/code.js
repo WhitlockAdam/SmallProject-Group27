@@ -109,7 +109,10 @@ function saveCookie()
 }
 
 function readCookie() {
-	console.log("firstname" + firstName);
+	console.log(firstName);
+	console.log(lastName);
+	firstName="";
+	lastName="";
     userId = -1;
     let data = document.cookie;
     let splits = data.split(",");
