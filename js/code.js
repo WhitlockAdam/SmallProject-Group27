@@ -191,8 +191,8 @@ function displayContacts() {
     let data = document.cookie;
     let splits = data.split(",");
     for (var i = 0; i < splits.length; i++) {
-    let thisOne = splits[i].trim();
-    let tokens = thisOne.split("=");
+        let thisOne = splits[i].trim();
+        let tokens = thisOne.split("=");
         if (tokens[0] === "userId") {
             userId = parseInt(tokens[1].trim());
         }
@@ -212,12 +212,34 @@ function displayContacts() {
                 let contact = contacts[i];
                 let row = document.createElement("tr");
 
-                let columns = ["firstName", "lastName", "email", "phone", "address"];
+                let columns = ["firstName", "lastName", "email", "phone", "address", "actions"]; // Add actions column
 
                 for (let j = 0; j < columns.length; j++) {
                     let column = columns[j];
                     let cell = document.createElement("td");
-                    cell.textContent = contact[column];
+
+                    if (column === "actions") {
+                        // Create edit and delete buttons
+                        let editButton = document.createElement("button");
+                        editButton.textContent = "Edit";
+                        editButton.addEventListener("click", function() {
+                            // Call a function to handle edit action here, passing contact.id
+                            editContact(contact.id);
+                        });
+
+                        let deleteButton = document.createElement("button");
+                        deleteButton.textContent = "Delete";
+                        deleteButton.addEventListener("click", function() {
+                            // Call a function to handle delete action here, passing contact.id
+                            deleteContact(contact.id);
+                        });
+
+                        cell.appendChild(editButton);
+                        cell.appendChild(deleteButton);
+                    } else {
+                        cell.textContent = contact[column];
+                    }
+
                     row.appendChild(cell);
                 }
 
@@ -227,14 +249,26 @@ function displayContacts() {
     };
     xhr.send();
 }
+
+// Add functions to handle edit and delete actions
+function editContact(contactId) {
+    // Implement edit logic here using contactId
+    // You can show a modal or redirect to an edit page, etc.
+}
+
+function deleteContact(contactId) {
+    // Implement delete logic here using contactId
+    // You can show a confirmation dialog and send a request to delete the contact
+}
+
 function searchContacts(){
     let query = document.getElementById("searchContact").value;
     let userId = -1;
     let data = document.cookie;
     let splits = data.split(",");
     for (var i = 0; i < splits.length; i++) {
-    let thisOne = splits[i].trim();
-    let tokens = thisOne.split("=");
+        let thisOne = splits[i].trim();
+        let tokens = thisOne.split("=");
         if (tokens[0] === "userId") {
             userId = parseInt(tokens[1].trim());
         }
@@ -254,15 +288,35 @@ function searchContacts(){
                 let contact = contacts[i];
                 let row = document.createElement("tr");
 
-                let columns = ["firstName", "lastName", "email", "phone", "address"];
+                let columns = ["firstName", "lastName", "email", "phone", "address", "actions"]; // Add actions column
 
                 for (let j = 0; j < columns.length; j++) {
                     let column = columns[j];
                     let cell = document.createElement("td");
-                    cell.textContent = contact[column];
+
+                    if (column === "actions") {
+                        let editButton = document.createElement("button");
+                        editButton.textContent = "Edit";
+                        editButton.addEventListener("click", function() {
+                            editContact(contact.id);
+                        });
+
+                        let deleteButton = document.createElement("button");
+                        deleteButton.textContent = "Delete";
+                        deleteButton.addEventListener("click", function() {
+                            deleteContact(contact.id);
+                        });
+
+                        cell.appendChild(editButton);
+                        cell.appendChild(deleteButton);
+                    } else {
+                        cell.textContent = contact[column];
+                    }
+
                     row.appendChild(cell);
                 }
-		if (contact.firstName.includes(query) || contact.lastName.includes(query) || contact.email.includes(query)) {
+
+                if (contact.firstName.includes(query) || contact.lastName.includes(query) || contact.email.includes(query)) {
                     tableBody.appendChild(row);
                 }
             }
@@ -270,3 +324,4 @@ function searchContacts(){
     };
     xhr.send();
 }
+

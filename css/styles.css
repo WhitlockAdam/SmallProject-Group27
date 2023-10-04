@@ -103,6 +103,7 @@ tr:last-of-type td:last-of-type {
 #headerBar {
   margin-top: 10px;
   margin: 10px 20px;
+  display: flex;
   color: white;
   padding: 10px;
   justify-content: space-around;
@@ -116,7 +117,6 @@ tr:last-of-type td:last-of-type {
 }
 
 #logoIcon {
-  width: 25%;
   display: flex;
   align-items: left;
 }
@@ -138,14 +138,7 @@ tr:last-of-type td:last-of-type {
   padding: 5px;
   color: white;
   border-radius: 40px;
-  position: center;
-  width: 80%;
-}
-
-#welcomeMessage {
-  width: 25%;
-  display: flex;
-  align-items: right;
+  position: relative;
 }
 
 .buttons {
