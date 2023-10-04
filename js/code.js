@@ -262,7 +262,7 @@ function searchContacts(){
                     cell.textContent = contact[column];
                     row.appendChild(cell);
                 }
-		if (firstName.includes(query) || lastName.include(query) || email.includes(query)) {
+		if (contact.firstName.includes(query) || contact.lastName.includes(query) || contact.email.includes(query)) {
                     tableBody.appendChild(row);
                 }
             }
