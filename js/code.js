@@ -263,6 +263,7 @@ function editContact(contactId) {
 }
 
 function deleteContact(contactId) {
+    console.log(contactId);
     let url = `${urlBase}/Contacts.php?action=deleteContactById`;
     let jsonPayload = JSON.stringify({ contact_id: contactId });
 
@@ -281,7 +282,6 @@ function deleteContact(contactId) {
             }
         }
     };
-
     xhr.send(jsonPayload);
 }
 
