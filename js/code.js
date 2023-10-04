@@ -227,7 +227,8 @@ function displayContacts() {
     };
     xhr.send();
 }
-function searchContacts(var query){
+function searchContacts(){
+    let query = document.getElementById("searchContact").value;
     let userId = -1;
     let data = document.cookie;
     let splits = data.split(",");
