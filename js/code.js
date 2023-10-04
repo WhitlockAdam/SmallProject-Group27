@@ -237,7 +237,7 @@ function displayContacts() {
                         let deleteButton = document.createElement("button");
                         deleteButton.textContent = "Delete";
                         deleteButton.addEventListener("click", function() {
-                            deleteContact(contact.id);
+                            deleteContact(contact.contact_id);
                         });
 
                         cell.appendChild(editButton);
