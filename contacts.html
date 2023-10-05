@@ -30,53 +30,56 @@
           href="https://github.com/WhitlockAdam/SmallProject-Group27"
           >Github</a
         >
-        <a 
-          href="http://4331cop.com/SmallProject-Group27/"
-          onclick="doLogOut()"
-          >Log Out</a>
+        <a href="http://4331cop.com/SmallProject-Group27/" onclick="doLogOut()"
+          >Log Out</a
+        >
       </div>
       <h3 id="welcomeMessage"></h3>
     </div>
-    <input type="text" id="searchContact" placeholder="Search contact...">
-    <button onclick="searchContacts()">Search</button>
-    <div>
-
-    </div>
-
     <div id="contactTableContainer">
-      <table class="contactTable">
-        <thead>
+      <!-- the container that holds no empty space just table. -->
+      <div id="contactTableSmallerContainer">
+        <div class="searchBar">
+          <input type="text" id="searchContact" placeholder="Search..." />
+          <button id="searchButton" onclick="searchContacts()">
+            <img src="./images/search.png" alt="search icon" id="searchImage" />
+          </button>
+        </div>
+        <table class="contactTable">
+          <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                <th>Actions</th> <!-- Add a column for edit and delete buttons -->
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Address</th>
+              <th>Actions</th>
+              <!-- Add a column for edit and delete buttons -->
             </tr>
-        </thead>
-        <tbody id="contactTableBody"> <!-- Add an ID to the table body for dynamically adding contacts -->
+          </thead>
+          <tbody id="contactTableBody">
+            <!-- Add an ID to the table body for dynamically adding contacts -->
             <!-- Contacts will be dynamically added here -->
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div id="addContactForm" style="display:none;">
-    <h2>Add New Contact</h2>
+    <div id="addContactForm" style="display: none">
+      <h2>Add New Contact</h2>
       <form onsubmit="addContact(); return false;">
         <label for="newFirstName">First Name:</label>
-        <input type="text" id="newFirstName" required><br>
+        <input type="text" id="newFirstName" required /><br />
         <label for="newLastName">Last Name:</label>
-        <input type="text" id="newLastName" required><br>
+        <input type="text" id="newLastName" required /><br />
         <label for="newEmail">Email:</label>
-        <input type="email" id="newEmail" required><br>
+        <input type="email" id="newEmail" required /><br />
         <label for="newPhoneNumber">Phone Number:</label>
-        <input type="tel" id="newPhoneNumber" required><br>
+        <input type="tel" id="newPhoneNumber" required /><br />
         <label for="newAddress">Address:</label>
-        <input type="text" id="newAddress" required><br>
-        <input type="submit" value="Add Contact">
+        <input type="text" id="newAddress" required /><br />
+        <input type="submit" value="Add Contact" />
       </form>
     </div>
-
   </body>
 </html>

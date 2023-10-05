@@ -15,6 +15,46 @@ body {
 
 #contactTableContainer {
   width: 100%;
+  border: 1px solid white;
+}
+
+#contactTableSmallerContainer {
+  width: fit-content;
+  margin: auto;
+}
+
+.searchBar {
+  justify-content: end;
+  display: flex;
+}
+
+#searchButton {
+  padding: 0.7rem 1.2rem;
+  width: 10%;
+  background-color: #00000035;
+  border: 3px darkgrey solid;
+  margin-left: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 25px 25px 0px;
+}
+
+#searchImage {
+  width: 20px;
+}
+
+#searchContact {
+  color: white;
+  font-size: 1rem;
+  padding: 0.6rem;
+  border: 3px darkgrey solid;
+  border-right: 0px;
+  border-radius: 40px 0px 0px 40px;
+  margin-right: 0px;
+  background-color: #00000035;
 }
 
 .contactTable {
@@ -179,7 +219,8 @@ tr:last-of-type td:last-of-type {
   border-radius: 25px;
 }
 
-#loginName:hover, #loginPassword:hover{
+#loginName:hover,
+#loginPassword:hover {
   background-color: #696969;
 }
 
@@ -208,12 +249,12 @@ tr:last-of-type td:last-of-type {
   text-align: center; /* Center align text on the button */
 }
 
-#loginLinkText{
+#loginLinkText {
   color: white;
 }
 
-#loginLink{
-  color:#5d3fd3;
+#loginLink {
+  color: #5d3fd3;
 }
 
 #loginDiv {
@@ -234,7 +275,6 @@ tr:last-of-type td:last-of-type {
   border-radius: 50px; /* Added border-radius for rounded corners */
 }
 
-
 #loginDiv label[for="loginName"],
 #loginDiv label[for="loginPassword"] {
   margin-bottom: 1.5%; /* Adjusted margin-bottom value */
@@ -243,7 +283,6 @@ tr:last-of-type td:last-of-type {
 #inner-title {
   margin-bottom: 2%; /* Adjusted margin value */
   color: #ffffff;
-  
 }
 select {
   width: 30%;
