@@ -297,6 +297,7 @@ function editContact(contactId) {
 }
 
 function updateContact() {
+  console.log(contactIdGlobal);
   let firstName = document.getElementById("editFirstName").value;
   let lastName = document.getElementById("editLastName").value;
   let email = document.getElementById("editEmail").value;
