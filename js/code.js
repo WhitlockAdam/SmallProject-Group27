@@ -205,7 +205,14 @@ function addContact() {
 
   xhr.send(JSON.stringify(jsonPayload));
 
-  // Clear the form and close it
+  // Clear the form fields
+  document.getElementById("newFirstName").value = "";
+  document.getElementById("newLastName").value = "";
+  document.getElementById("newEmail").value = "";
+  document.getElementById("newPhoneNumber").value = "";
+  document.getElementById("newAddress").value = "";
+
+  // Close the form
   document.getElementById("addContactForm").style.display = "none";
 }
 
