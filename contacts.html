@@ -40,7 +40,7 @@
       <!-- the container that holds no empty space just table. -->
       <div id="contactTableSmallerContainer">
         <div class="searchBar">
-          <input type="text" id="searchContact" placeholder="Search..." />
+          <label for="searchContact"></label><input type="text" id="searchContact" placeholder="Search..." />
           <button id="searchButton" onclick="searchContacts()">
             <img src="./images/search.png" alt="search icon" id="searchImage" />
           </button>
@@ -82,21 +82,14 @@
       </form>
     </div>
 
-    <div id="editContactForm" style="display: none">
+    <div id="editContactForm" style="display:none;">
       <h2>Edit Contact</h2>
-      <form onsubmit="editContact(); return false;">
-        <label for="editFirstName">First Name:</label>
-        <input type="text" id="editFirstName" required /><br />
-        <label for="editLastName">Last Name:</label>
-        <input type="text" id="editLastName" required /><br />
-        <label for="editEmail">Email:</label>
-        <input type="email" id="editEmail" required /><br />
-        <label for="editPhoneNumber">Phone Number:</label>
-        <input type="tel" id="editPhoneNumber" required /><br />
-        <label for="editAddress">Address:</label>
-        <input type="text" id="editAddress" required /><br />
-        <input type="submit" value="Edit Contact" />
-      </form>
+      <label for="editFirstName"></label><input type="text" id="editFirstName" placeholder="First Name"><br>
+      <label for="editLastName"></label><input type="text" id="editLastName" placeholder="Last Name"><br>
+      <label for="editEmail"></label><input type="email" id="editEmail" placeholder="Email"><br>
+      <label for="editPhoneNumber"></label><input type="tel" id="editPhoneNumber" placeholder="Phone Number"><br>
+      <label for="editAddress"></label><input type="text" id="editAddress" placeholder="Address"><br>
+      <button onclick="updateContact()">Save Changes</button>
     </div>
   </body>
 </html>

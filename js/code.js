@@ -256,8 +256,7 @@ function displayContacts() {
             let editButton = document.createElement("button");
             editButton.textContent = "Edit";
             editButton.addEventListener("click", function () {
-              // Call a function to handle edit action here, passing contact.id
-              editContact(contact.id);
+              editContact(contact.contact_id);
             });
 
             let deleteButton = document.createElement("button");
@@ -284,8 +283,55 @@ function displayContacts() {
 
 // Add functions to handle edit and delete actions
 function editContact(contactId) {
-  // Implement edit logic here using contactId
-  // You can show a modal or redirect to an edit page, etc.
+  if (contactId) {
+    document.getElementById("editFirstName").value = contactId.firstName;
+    document.getElementById("editLastName").value = contactId.lastName;
+    document.getElementById("editEmail").value = contactId.email;
+    document.getElementById("editPhoneNumber").value = contactId.phone;
+    document.getElementById("editAddress").value = contactId.address;
+
+    document.getElementById("editContactForm").style.display = "block";
+  }
+}
+
+function updateContact() {
+  let firstName = document.getElementById("editFirstName").value;
+  let lastName = document.getElementById("editLastName").value;
+  let email = document.getElementById("editEmail").value;
+  let phone = document.getElementById("editPhoneNumber").value;
+  let address = document.getElementById("editAddress").value;
+
+  // Assuming you have a variable `contactId` that stores the ID of the contact being edited
+
+  let jsonPayload = {
+    id: contactId,
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phone: phone,
+    address: address,
+  };
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", urlBase + "/Contacts.php?action=updateContact", true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+  xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      let response = JSON.parse(xhr.responseText);
+      if (response.success) {
+        alert(response.success);
+        displayContacts();
+      } else {
+        alert(response.error);
+      }
+    }
+  };
+
+  xhr.send(JSON.stringify(jsonPayload));
+
+  // Hide the edit form after updating
+  document.getElementById("editContactForm").style.display = "none";
 }
 
 function deleteContact(contactId) {
