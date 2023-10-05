@@ -257,7 +257,7 @@ function displayContacts() {
             editButton.textContent = "Edit";
             editButton.addEventListener("click", function () {
               // Call a function to handle edit action here, passing contact.id
-              editContact();
+              editContact(contact.id);
             });
 
             let deleteButton = document.createElement("button");
@@ -282,41 +282,10 @@ function displayContacts() {
   xhr.send();
 }
 
-function editContact() {
-  let contactId = document.getElementById("editContactId").value;
-  let firstName = document.getElementById("editFirstName").value;
-  let lastName = document.getElementById("editLastName").value;
-  let email = document.getElementById("editEmail").value;
-  let phone = document.getElementById("editPhoneNumber").value;
-  let address = document.getElementById("editAddress").value;
-
-  let jsonPayload = {
-    contact_id: contactId,
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    phone: phone,
-    address: address,
-  };
-
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", urlBase + "/Contacts.php?action=editContactById", true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-  xhr.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      let response = JSON.parse(xhr.responseText);
-      if (response.success) {
-        alert(response.success);
-        displayContacts();
-      } else {
-        alert(response.error);
-      }
-    }
-  };
-  xhr.send(JSON.stringify(jsonPayload));
-
-  document.getElementById("editContactForm").style.display = "none";
+// Add functions to handle edit and delete actions
+function editContact(contactId) {
+  // Implement edit logic here using contactId
+  // You can show a modal or redirect to an edit page, etc.
 }
 
 function deleteContact(contactId) {
