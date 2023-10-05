@@ -4,6 +4,7 @@ const extension = "php";
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let contactIdGlobal = 0;
 
 function doRegister() {
   let email = document.getElementById("loginName").value;
@@ -283,6 +284,7 @@ function displayContacts() {
 
 // Add functions to handle edit and delete actions
 function editContact(contactId) {
+  contactIdGlobal = contactId;
   if (contactId) {
     document.getElementById("editFirstName").value = contactId.firstName;
     document.getElementById("editLastName").value = contactId.lastName;
@@ -301,10 +303,8 @@ function updateContact() {
   let phone = document.getElementById("editPhoneNumber").value;
   let address = document.getElementById("editAddress").value;
 
-  // Assuming you have a variable `contactId` that stores the ID of the contact being edited
-
   let jsonPayload = {
-    id: contactId,
+    contact_id: contactIdGlobal,
     firstName: firstName,
     lastName: lastName,
     email: email,
