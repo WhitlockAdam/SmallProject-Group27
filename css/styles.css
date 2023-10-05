@@ -14,12 +14,15 @@ body {
 }
 
 #contactTableContainer {
-  width: 100%;
-  border: 1px solid white;
+  margin-top: 3.5rem;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
 }
 
 #contactTableSmallerContainer {
-  width: fit-content;
+  width: 100%;
   margin: auto;
 }
 
@@ -30,7 +33,7 @@ body {
 
 #searchButton {
   padding: 0.7rem 1.2rem;
-  width: 10%;
+  width: 5%;
   background-color: #00000035;
   border: 3px darkgrey solid;
   margin-left: 0px;
@@ -62,8 +65,9 @@ body {
   color: white;
   padding: 1rem;
   margin: 1rem auto;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   border-radius: 25px;
+  width: 100%;
 }
 
 tbody {
@@ -73,15 +77,25 @@ tbody {
 
 thead {
   background-color: #5d3fd3;
-  border-radius: 25%;
 }
 
-.contactTable th,
-td {
-  padding: 0.8rem;
+.contactTable td {
+  padding: 0.75rem 3rem;
+  border-radius: 25px;
+  border-right: 1px solid #6e6e6e;
+  border-left: 1px solid #6e6e6e;
 }
 .contactTable th {
+  padding: 1.25rem 3rem;
   text-align: left;
+  border: 2px solid #412c93;
+}
+
+tbody button {
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 25%;
+  width: 50%;
 }
 
 th:first-of-type {
@@ -220,7 +234,9 @@ tr:last-of-type td:last-of-type {
 }
 
 #loginName:hover,
-#loginPassword:hover {
+#loginPassword:hover,
+#lastName:hover,
+#firstName:hover {
   background-color: #696969;
 }
 
@@ -236,7 +252,8 @@ tr:last-of-type td:last-of-type {
   margin-bottom: 1%;
 }
 
-#loginButton {
+#loginButton,
+#registerButton {
   font-size: 30px;
   border-radius: 25px;
   width: 80%;
