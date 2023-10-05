@@ -297,21 +297,20 @@ function editContact(contactId) {
 }
 
 function updateContact() {
-  console.log(contactIdGlobal);
   let firstName = document.getElementById("editFirstName").value;
   let lastName = document.getElementById("editLastName").value;
   let email = document.getElementById("editEmail").value;
   let phone = document.getElementById("editPhoneNumber").value;
   let address = document.getElementById("editAddress").value;
 
-  let jsonPayload = JSON.stringify({
+  let jsonPayload = {
     contact_id: contactIdGlobal,
     firstName: firstName,
     lastName: lastName,
     email: email,
     phone: phone,
     address: address,
-  });
+  };
 
   let xhr = new XMLHttpRequest();
   xhr.open("POST", urlBase + "/Contacts.php?action=updateContact", true);

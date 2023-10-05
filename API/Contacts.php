@@ -123,7 +123,7 @@ if($conn->connect_error) {
     }
 
     // Endpoint for editing a contact by contact_id
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'editContactById') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'updateContact') {
         $data = getRequestInfo();
         $contactId = $data['contact_id'];
         $firstName = $data['firstName'];
