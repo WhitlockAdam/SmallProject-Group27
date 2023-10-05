@@ -256,7 +256,8 @@ function displayContacts() {
             let editButton = document.createElement("button");
             editButton.textContent = "Edit";
             editButton.addEventListener("click", function () {
-              editContact(contact.contact_id);
+              // Call a function to handle edit action here, passing contact.id
+              editContact(contact.id);
             });
 
             let deleteButton = document.createElement("button");
@@ -281,49 +282,10 @@ function displayContacts() {
   xhr.send();
 }
 
+// Add functions to handle edit and delete actions
 function editContact(contactId) {
-  console.log(contactId);
-  let url = `${urlBase}/Contacts.php?action=editContactById`;
-  let jsonPayload = JSON.stringify({ contact_id: contactId });
-
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-  xhr.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      let response = JSON.parse(xhr.responseText);
-      if (response.success) {
-        alert(response.success);
-        displayContacts();
-      } else {
-        alert(response.error);
-      }
-    }
-  };
-  xhr.send(jsonPayload);
-
-  document.getElementById("editContactForm").style.display = "block";
-  document.getElementById("addContactForm").style.display = "none";
-  document.getElementById("editFirstName").value = "";
-  document.getElementById("editLastName").value = "";
-  document.getElementById("editEmail").value = "";
-  document.getElementById("editPhoneNumber").value = "";
-  document.getElementById("editAddress").value = "";
-  document.getElementById("editContactId").value = "";
-  document.getElementById("editContactId").value = contactId;
-  document.getElementById("editContactId").disabled = true;
-
-  document.getElementById("editFirstName").focus();
-  document.getElementById("editFirstName").select();
-  document.getElementById("editLastName").focus();
-  document.getElementById("editLastName").select();
-  document.getElementById("editEmail").focus();
-  document.getElementById("editEmail").select();
-  document.getElementById("editPhoneNumber").focus();
-  document.getElementById("editPhoneNumber").select();
-  document.getElementById("editAddress").focus();
-  document.getElementById("editAddress").select();
+  // Implement edit logic here using contactId
+  // You can show a modal or redirect to an edit page, etc.
 }
 
 function deleteContact(contactId) {
