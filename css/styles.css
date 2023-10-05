@@ -7,7 +7,6 @@ body {
 
 #title {
   font-size: 40px;
-  position: absolute;
   top: 10px;
   left: 10px;
   color: #ffffff;
@@ -15,7 +14,7 @@ body {
 
 #contactTableContainer {
   margin-top: 3.5rem;
-  width: 50%;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
@@ -80,13 +79,12 @@ thead {
 }
 
 .contactTable td {
-  padding: 0.75rem 3rem;
-  border-radius: 25px;
+  padding: 0.75rem 1rem;
   border-right: 1px solid #6e6e6e;
   border-left: 1px solid #6e6e6e;
 }
 .contactTable th {
-  padding: 1.25rem 3rem;
+  padding: 1.25rem 1rem;
   text-align: left;
   border: 2px solid #412c93;
 }
@@ -111,7 +109,7 @@ tr:last-of-type td:last-of-type {
   border-bottom-right-radius: 10px;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 1000px) {
   th {
     display: none;
   }
@@ -176,7 +174,7 @@ tr:last-of-type td:last-of-type {
 }
 
 .navBar > a {
-  padding: 10px 50px;
+  padding: 10px 40px;
   color: white;
   text-decoration: none;
   font-size: 20px;
@@ -212,7 +210,6 @@ tr:last-of-type td:last-of-type {
 
 #loginLink {
   text-align: left;
-  border: 1px solid black;
 }
 
 #loginName,
@@ -220,17 +217,18 @@ tr:last-of-type td:last-of-type {
 #firstName,
 #lastName {
   font-size: 30px;
-  display: block;
   margin-bottom: 1%;
   font-family: "Ubuntu", sans-serif;
   border: 2px solid #5d3fd3; /* Added border style */
-  background-color: #333232; /* Added background color */
+  background-color: #202020; /* Added background color */
   color: #ffffff; /* Added text color */
   padding: 10px; /* Added padding for space inside the input field */
-  width: 80%;
-  margin: 0 auto 2%; /* Center align and add margin */
   text-align: left; /* Set text alignment to left */
-  border-radius: 25px;
+  border-radius: 20px;
+}
+
+#loginPassword {
+  margin-bottom: 2.5rem;
 }
 
 #loginName:hover,
@@ -256,7 +254,7 @@ tr:last-of-type td:last-of-type {
 #registerButton {
   font-size: 30px;
   border-radius: 25px;
-  width: 80%;
+  width: 100%;
   margin: 0 auto 2%; /* Added margin-bottom value */
   font-family: "Ubuntu", sans-serif;
   color: #ffffff;
@@ -274,21 +272,26 @@ tr:last-of-type td:last-of-type {
   color: #5d3fd3;
 }
 
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: white 1px solid;
+}
+
 #loginDiv {
   font-size: 20px;
-  width: 60%;
-  margin: 15% auto 0 50%; /* Adjusted margin values */
-  transform: translateX(-50%);
+  display: flex;
+  width: 30%;
   font-family: "Ubuntu", sans-serif;
   text-align: center; /* Center align text */
+  flex-direction: column;
 }
 
 #loginDiv label {
-  margin-bottom: 1.5%; /* Adjusted margin-bottom value */
-  display: block; /* Make label a block element */
+  margin: 1rem 0rem;
   color: white;
   text-align: left; /* Set text alignment to left */
-  margin-left: 5%; /* Increased margin-left for more spacing */
   border-radius: 50px; /* Added border-radius for rounded corners */
 }
 
@@ -300,6 +303,9 @@ tr:last-of-type td:last-of-type {
 #inner-title {
   margin-bottom: 2%; /* Adjusted margin value */
   color: #ffffff;
+  text-align: left;
+  font-size: xx-large;
+  font-weight: 700;
 }
 select {
   width: 30%;

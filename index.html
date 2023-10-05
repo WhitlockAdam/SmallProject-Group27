@@ -13,16 +13,28 @@
   <body>
     <h1 id="title">Contact Manager</h1>
 
-    <div id="loginDiv">
-      <span id="inner-title">Log In</span><br />
-      <label for="loginName">Email</label>
-      <input type="text" id="loginName" /><br />
-      <label for="loginPassword">Password</label>
-      <input type="password" id="loginPassword" /><br />
-      <button type="button" id="loginButton" class="buttons" onclick="doLogin();">Log In</button>
-      <span id="loginResult"></span>
-      <br />
-     <span id="loginLinkText">Need an account? </span><a href="./register.html" id="loginLink">Click here</a>
+    <div class="loginContainer">
+      <div id="loginDiv">
+        <span id="inner-title">Log In</span><br />
+        <label for="loginName">Email</label>
+        <input type="text" id="loginName" /><br />
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" /><br />
+        <button
+          type="button"
+          id="loginButton"
+          class="buttons"
+          onclick="doLogin();"
+        >
+          Log In
+        </button>
+        <span id="loginResult"></span>
+        <br />
+        <div>
+          <span id="loginLinkText">Need an account? </span
+          ><a href="./register.html" id="loginLink">Click here</a>
+        </div>
+      </div>
     </div>
   </body>
 </html>
