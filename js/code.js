@@ -304,14 +304,14 @@ function updateContact() {
   let phone = document.getElementById("editPhoneNumber").value;
   let address = document.getElementById("editAddress").value;
 
-  let jsonPayload = {
-    contactId: contactIdGlobal,
+  let jsonPayload = JSON.stringify({
+    contact_id: contactIdGlobal,
     firstName: firstName,
     lastName: lastName,
     email: email,
     phone: phone,
     address: address,
-  };
+  });
 
   let xhr = new XMLHttpRequest();
   xhr.open("POST", urlBase + "/Contacts.php?action=updateContact", true);
