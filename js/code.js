@@ -297,24 +297,23 @@ function editContact(contactId) {
 }
 
 function updateContact() {
-  console.log(contactIdGlobal);
   let firstName = document.getElementById("editFirstName").value;
   let lastName = document.getElementById("editLastName").value;
   let email = document.getElementById("editEmail").value;
   let phone = document.getElementById("editPhoneNumber").value;
   let address = document.getElementById("editAddress").value;
 
-  let jsonPayload = JSON.stringify({
-    contact_id: contactIdGlobal,
+  let jsonPayload = {
+    id: contactIdGlobal,
     firstName: firstName,
     lastName: lastName,
     email: email,
     phone: phone,
     address: address,
-  });
+  }
 
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", urlBase + "/Contacts.php?action=updateContact", true);
+  xhr.open("POST", urlBase + "/Contacts.php?action=editContactById", true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
   xhr.onreadystatechange = function () {
@@ -327,12 +326,13 @@ function updateContact() {
         alert(response.error);
       }
     }
-  }
+  };
 
   xhr.send(JSON.stringify(jsonPayload));
 
-  // Hide the edit form after updating
   document.getElementById("editContactForm").style.display = "none";
+
+  contactIdGlobal = -1;
 }
 
 function deleteContact(contactId) {
