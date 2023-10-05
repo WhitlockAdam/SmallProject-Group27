@@ -256,7 +256,8 @@ function displayContacts() {
             let editButton = document.createElement("button");
             editButton.textContent = "Edit";
             editButton.addEventListener("click", function () {
-              editContact(contact.contact_id);
+              // Call a function to handle edit action here, passing contact.id
+              editContact(contact.id);
             });
 
             let deleteButton = document.createElement("button");
@@ -281,45 +282,10 @@ function displayContacts() {
   xhr.send();
 }
 
+// Add functions to handle edit and delete actions
 function editContact(contactId) {
-  let url = `${urlBase}/Contacts.php?action=editContactById`;
-
-  // Retrieve edited values from form fields
-  let editedFirstName = document.getElementById("editFirstName").value;
-  let editedLastName = document.getElementById("editLastName").value;
-  let editedEmail = document.getElementById("editEmail").value;
-  let editedPhoneNumber = document.getElementById("editPhoneNumber").value;
-  let editedAddress = document.getElementById("editAddress").value;
-
-  let jsonPayload = JSON.stringify({
-    contact_id: contactId,
-    firstName: editedFirstName,
-    lastName: editedLastName,
-    email: editedEmail,
-    phoneNumber: editedPhoneNumber,
-    address: editedAddress,
-  });
-
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        let response = JSON.parse(xhr.responseText);
-        if (response.success) {
-          alert(response.success);
-        } else {
-          alert(response.error);
-        }
-      } else {
-        alert("An error occurred while editing the contact.");
-      }
-    }
-  };
-
-  xhr.send(jsonPayload);
+  // Implement edit logic here using contactId
+  // You can show a modal or redirect to an edit page, etc.
 }
 
 function deleteContact(contactId) {
