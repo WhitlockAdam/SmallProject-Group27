@@ -305,7 +305,7 @@ function updateContact() {
   let address = document.getElementById("editAddress").value;
 
   let jsonPayload = {
-    contact_id: contactIdGlobal,
+    id: contactIdGlobal,
     firstName: firstName,
     lastName: lastName,
     email: email,
