@@ -257,7 +257,7 @@ function displayContacts() {
             let editButton = document.createElement("button");
             editButton.textContent = "Edit";
             editButton.addEventListener("click", function () {
-              editContact(contact.contact_id);
+              editContact(contact);
             });
 
             let deleteButton = document.createElement("button");
@@ -283,14 +283,15 @@ function displayContacts() {
 }
 
 // Add functions to handle edit and delete actions
-function editContact(contactId) {
-  contactIdGlobal = contactId;
-  if (contactId) {
-    document.getElementById("editFirstName").value = contactId.firstName;
-    document.getElementById("editLastName").value = contactId.lastName;
-    document.getElementById("editEmail").value = contactId.email;
-    document.getElementById("editPhoneNumber").value = contactId.phone;
-    document.getElementById("editAddress").value = contactId.address;
+function editContact(contact) {
+  contactIdGlobal = contact.contact_id;
+
+  if (contact) {
+    document.getElementById("editFirstName").value = contact.firstName;
+    document.getElementById("editLastName").value = contact.lastName;
+    document.getElementById("editEmail").value = contact.email;
+    document.getElementById("editPhoneNumber").value = contact.phone;
+    document.getElementById("editAddress").value = contact.address;
 
     document.getElementById("editContactForm").style.display = "block";
   }
