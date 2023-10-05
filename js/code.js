@@ -305,7 +305,7 @@ function updateContact() {
   let address = document.getElementById("editAddress").value;
 
   let jsonPayload = {
-    contact_id: contactIdGlobal,
+    contactId: contactIdGlobal,
     firstName: firstName,
     lastName: lastName,
     email: email,
@@ -327,7 +327,7 @@ function updateContact() {
         alert(response.error);
       }
     }
-  };
+  }
 
   xhr.send(JSON.stringify(jsonPayload));
 
