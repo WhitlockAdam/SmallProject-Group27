@@ -434,7 +434,9 @@ function searchContacts() {
         if (
           contact.firstName.includes(query) ||
           contact.lastName.includes(query) ||
-          contact.email.includes(query)
+          contact.email.includes(query) ||
+          contact.phone.includes(query) ||
+          contact.address.includes(query)
         ) {
           tableBody.appendChild(row);
         }
