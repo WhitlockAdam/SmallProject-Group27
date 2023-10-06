@@ -14,7 +14,7 @@ body {
 
 #contactTableContainer {
   margin-top: 3.5rem;
-  width: 40%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
@@ -59,6 +59,42 @@ body {
   background-color: #00000035;
 }
 
+#addContactForm, #editContactForm{
+  display: flex;
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: fit-content;
+  color: white;
+  text-align: left;
+  padding: 1.5rem;
+  border-radius: 40px;
+  border: 1px solid #6e6e6e;
+  background-color: #202020;
+  filter: drop-shadow(1px 1px 10px #613583);  
+}
+
+#addContactForm input, #editContactForm input{
+  width: 95%;
+  margin-bottom:.5rem;
+  border: 1px #6e6e6e solid;
+  border-radius: 6px;
+  padding: .5rem;
+  background-color: #202020;
+  color: white;
+}
+
+#addContactForm button, #editContactForm button{
+  background-color: #5d3fd3;
+  border: 0;
+  width: 100%;
+  padding: .5rem;
+  margin-top:.5rem ;
+}
+
 .contactTable {
   border-collapse: collapse;
   color: white;
@@ -82,6 +118,7 @@ thead {
   padding: 0.75rem 1rem;
   border-right: 1px solid #6e6e6e;
   border-left: 1px solid #6e6e6e;
+  border-bottom: 1px solid #6e6e6e; 
 }
 .contactTable th {
   padding: 1.25rem 1rem;
@@ -90,9 +127,10 @@ thead {
 }
 
 tbody button {
-  background-color: white;
-  padding: 0.5rem;
-  border-radius: 25%;
+  background-color: #202020;
+  color: white;
+  padding: 0.4rem;
+  border-radius: 25px;
   width: 50%;
 }
 
@@ -109,7 +147,7 @@ tr:last-of-type td:last-of-type {
   border-bottom-right-radius: 10px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 650px) {
   th {
     display: none;
   }
