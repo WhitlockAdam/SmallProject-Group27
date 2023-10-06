@@ -209,6 +209,7 @@ tr:last-of-type td:last-of-type {
 #logoIcon {
   display: flex;
   align-items: left;
+  width: 25%;
 }
 
 .navBar > a {
@@ -229,6 +230,7 @@ tr:last-of-type td:last-of-type {
   color: white;
   border-radius: 40px;
   position: relative;
+  text-align: center;
 }
 
 .buttons {
@@ -244,6 +246,11 @@ tr:last-of-type td:last-of-type {
   background-color: #9503ff;
   color: #ffffff;
   opacity: 50%;
+}
+
+#welcomeMessage{
+  width: 25%;
+  text-align: right;
 }
 
 #loginLink {
