@@ -317,11 +317,14 @@ tr:last-of-type td:last-of-type {
   color: #5d3fd3;
 }
 
+#logoIconAndName{
+  display:flex;
+}
+
 .loginContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: white 1px solid;
 }
 
 #loginDiv {
