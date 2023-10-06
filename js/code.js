@@ -6,8 +6,6 @@ let firstName = "";
 let lastName = "";
 let contactIdGlobal = 0;
 
-// make sure when you register that it reads the cookie when it displays contact page
-
 function doRegister() {
   let email = document.getElementById("loginName").value;
   let password = document.getElementById("loginPassword").value;
@@ -45,7 +43,7 @@ function doRegister() {
         lastName = jsonObject.lastName;
 
         saveCookie();
-        readCookie();
+
         window.location.href = "contacts.html";
       }
     };
