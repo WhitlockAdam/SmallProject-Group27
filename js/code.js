@@ -195,7 +195,7 @@ function addContact() {
     if (this.readyState === 4 && this.status === 200) {
       let response = JSON.parse(xhr.responseText);
       if (response.success) {
-        alert(response.success);
+        //alert(response.success);
         displayContacts();
       } else {
         alert(response.error);
@@ -328,7 +328,7 @@ function updateContact() {
     if (this.readyState === 4 && this.status === 200) {
       let response = JSON.parse(xhr.responseText);
       if (response.success) {
-        alert(response.success);
+        //alert(response.success);
         displayContacts();
       } else {
         alert(response.error);
@@ -355,7 +355,7 @@ function deleteContact(contactId) {
     if (this.readyState === 4 && this.status === 200) {
       let response = JSON.parse(xhr.responseText);
       if (response.success) {
-        alert(response.success);
+        //alert(response.success);
         displayContacts();
       } else {
         alert(response.error);
