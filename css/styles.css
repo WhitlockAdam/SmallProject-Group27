@@ -59,7 +59,8 @@ body {
   background-color: #00000035;
 }
 
-#addContactForm, #editContactForm{
+#addContactForm,
+#editContactForm {
   display: flex;
   position: absolute;
   top: 25%;
@@ -74,25 +75,27 @@ body {
   border-radius: 40px;
   border: 1px solid #6e6e6e;
   background-color: #202020;
-  filter: drop-shadow(1px 1px 10px #613583);  
+  filter: drop-shadow(1px 1px 10px #613583);
 }
 
-#addContactForm input, #editContactForm input{
+#addContactForm input,
+#editContactForm input {
   width: 95%;
-  margin-bottom:.5rem;
+  margin-bottom: 0.5rem;
   border: 1px #6e6e6e solid;
   border-radius: 6px;
-  padding: .5rem;
+  padding: 0.5rem;
   background-color: #202020;
   color: white;
 }
 
-#addContactForm button, #editContactForm button{
+#addContactForm button,
+#editContactForm button {
   background-color: #5d3fd3;
   border: 0;
   width: 100%;
-  padding: .5rem;
-  margin-top:.5rem ;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .contactTable {
@@ -118,7 +121,7 @@ thead {
   padding: 0.75rem 1rem;
   border-right: 1px solid #6e6e6e;
   border-left: 1px solid #6e6e6e;
-  border-bottom: 1px solid #6e6e6e; 
+  border-bottom: 1px solid #6e6e6e;
 }
 .contactTable th {
   padding: 1.25rem 1rem;
@@ -248,7 +251,7 @@ tr:last-of-type td:last-of-type {
   opacity: 50%;
 }
 
-#welcomeMessage{
+#welcomeMessage {
   width: 25%;
   text-align: right;
 }
@@ -317,14 +320,16 @@ tr:last-of-type td:last-of-type {
   color: #5d3fd3;
 }
 
-#logoIconAndName{
-  display:flex;
+#logoIconAndName {
+  display: flex;
+  padding: 1rem;
 }
 
 .loginContainer {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 5%;
 }
 
 #loginDiv {
